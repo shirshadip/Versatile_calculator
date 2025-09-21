@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <link rel="stylesheet" href="css/basic.css">
+</head>
+<body>
+    <!-- Content goes here -->
+     <div class="Calculator">
+        <input type="text" id="display" disabled>
+        <br>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="appendValue('/')">÷</button>
+    <button onclick="appendValue('*')">×</button>
+    <button onclick="deleteLast()">←</button>
+    <br>
+    <button onclick="appendValue('7')">7</button>
+    <button onclick="appendValue('8')">8</button>
+    <button onclick="appendValue('9')">9</button>
+    <button onclick="appendValue('-')">-</button>
+    <br>
+    <button onclick="appendValue('4')">4</button>
+    <button onclick="appendValue('5')">5</button>
+    <button onclick="appendValue('6')">6</button>
+    <button onclick="appendValue('+')">+</button>
+    <br>
+    <button onclick="appendValue('1')">1</button>
+    <button onclick="appendValue('2')">2</button>
+    <button onclick="appendValue('3')">3</button>
+    <button onclick="calculate()">=</button>
+    <br>
+    <button onclick="appendValue('0')" style="width: 84px;">0</button>
+    <button onclick="appendValue('.')">.</button>
+  </div>
+    <script src="javascript/basic.js"></script>
+     </div>
+     <div>
+                <button onclick="location.href='index.html'" style="width: 220px;height: 50px;background-color: rgb(158, 163, 153);">Home page</button>
+
+    <button onclick="location.href='scientific.html'" style="width: 220px;height: 80px;background-color: rgb(164, 166, 161);">Scientific Calculator</button>
+     </div>
+     <div id="footer">
+        <footer></footer>
+            <p>&copy; 2025 Calculator App. Made by shirshadip</p>
+        </footer>
+     </div>
+
+</body>
+</html>
