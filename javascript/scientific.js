@@ -1,3 +1,4 @@
+
 let angleMode = 'radians';
 const display = document.getElementById('display');
 
