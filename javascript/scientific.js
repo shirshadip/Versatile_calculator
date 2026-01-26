@@ -1,10 +1,13 @@
-
-let angleMode = 'radians';
+/*************************
+ * CONFIGURATION
+ *************************/
+let angleMode = 'degrees'; // DEGREE FIRST
 const display = document.getElementById('display');
+const EPS = 1e-12;
 
-/* =====================
-   BASIC CONTROLS
-===================== */
+/*************************
+ * BASIC CONTROLS
+ *************************/
 function appendValue(value) {
     display.value += value;
     display.focus();
@@ -22,75 +25,105 @@ function deleteLast() {
 
 function toggleMode() {
     const btn = document.getElementById('modeBtn');
-    angleMode = angleMode === 'radians' ? 'degrees' : 'radians';
-    btn.textContent = angleMode === 'radians' ? 'Radians' : 'Degrees';
+    angleMode = angleMode === 'degrees' ? 'radians' : 'degrees';
+    btn.textContent = angleMode === 'degrees' ? 'Degrees' : 'Radians';
 }
 
-/* =====================
-   ANGLE HELPERS
-===================== */
+/*************************
+ * ANGLE UTILITIES
+ *************************/
+function toRad(x) {
+    return angleMode === 'degrees' ? x * Math.PI / 180 : x;
+}
+
+function toDeg(x) {
+    return angleMode === 'degrees' ? x * 180 / Math.PI : x;
+}
+
+/*************************
+ * TRIG FUNCTIONS
+ *************************/
 function sin(x) {
-    return Math.sin(angleMode === 'degrees' ? x * Math.PI / 180 : x);
+    return Math.sin(toRad(x));
 }
+
 function cos(x) {
-    return Math.cos(angleMode === 'degrees' ? x * Math.PI / 180 : x);
+    return Math.cos(toRad(x));
 }
+
 function tan(x) {
-    const rad = angleMode === 'degrees' ? x * Math.PI / 180 : x;
-    if (Math.abs(Math.cos(rad)) < 1e-12) throw Error("tan undefined");
-    return Math.tan(rad);
+    const r = toRad(x);
+    if (Math.abs(Math.cos(r)) < EPS) {
+        throw Error("tan undefined");
+    }
+    return Math.tan(r);
 }
 
 function asin(x) {
     if (x < -1 || x > 1) throw Error("asin domain error");
-    const r = Math.asin(x);
-    return angleMode === 'degrees' ? r * 180 / Math.PI : r;
-}
-function acos(x) {
-    if (x < -1 || x > 1) throw Error("acos domain error");
-    const r = Math.acos(x);
-    return angleMode === 'degrees' ? r * 180 / Math.PI : r;
-}
-function atan(x) {
-    const r = Math.atan(x);
-    return angleMode === 'degrees' ? r * 180 / Math.PI : r;
+    return toDeg(Math.asin(x));
 }
 
-/* =====================
-   SAFE MATH FUNCTIONS
-===================== */
+function acos(x) {
+    if (x < -1 || x > 1) throw Error("acos domain error");
+    return toDeg(Math.acos(x));
+}
+
+function atan(x) {
+    return toDeg(Math.atan(x));
+}
+
+/*************************
+ * SAFE MATH FUNCTIONS
+ *************************/
 function ln(x) {
     if (x <= 0) throw Error("ln domain error");
     return Math.log(x);
 }
+
 function log(x) {
     if (x <= 0) throw Error("log domain error");
     return Math.log10(x);
 }
+
 function sqrt(x) {
     if (x < 0) throw Error("sqrt domain error");
     return Math.sqrt(x);
 }
 
-/* =====================
-   CALCULATION CORE
-===================== */
+/*************************
+ * NUMERIC NORMALIZATION
+ *************************/
+function normalize(x) {
+    if (Math.abs(x) < EPS) return 0;
+    return +x.toFixed(12);
+}
+
+/*************************
+ * CALCULATION CORE
+ *************************/
 function calculate() {
     try {
-        let expr = display.value
-            .replace(/\^/g, "**")
-            .replace(/π/g, "Math.PI")
-            .replace(/e/g, "Math.E");
+        const expr = display.value.replace(/\^/g, "**");
 
-        // Evaluate safely
-        const result = Function(`
-            "use strict";
-            return (${expr});
-        `)();
+        const scope = {
+            sin, cos, tan,
+            asin, acos, atan,
+            ln, log, sqrt,
+            PI: Math.PI,
+            E: Math.E
+        };
 
-        if (!isFinite(result)) throw Error("Math error");
+        const result = Function(
+            ...Object.keys(scope),
+            `"use strict"; return (${expr});`
+        )(...Object.values(scope));
 
-        display.value = result;
+        if (!Number.isFinite(result)) {
+            throw Error("Math error");
+        }
+
+        display.value = normalize(result);
     } catch (err) {
         display.value = "Error";
         console.error(err.message);
@@ -98,9 +131,9 @@ function calculate() {
     }
 }
 
-/* =====================
-   KEYBOARD SUPPORT
-===================== */
+/*************************
+ * KEYBOARD SUPPORT
+ *************************/
 document.addEventListener("keydown", (e) => {
     const key = e.key;
 
@@ -112,6 +145,7 @@ document.addEventListener("keydown", (e) => {
     }
 
     if (key === "Backspace") return;
+
     if (key === "Escape") {
         e.preventDefault();
         clearDisplay();
@@ -125,14 +159,14 @@ document.addEventListener("keydown", (e) => {
             t: "tan(",
             l: "ln(",
             r: "sqrt(",
-            p: "Math.PI",
-            e: "Math.E"
+            p: "PI",
+            e: "E"
         };
         if (map[key]) appendValue(map[key]);
     }
 });
 
-/* =====================
-   AUTO FOCUS
-===================== */
+/*************************
+ * AUTO FOCUS
+ *************************/
 window.onload = () => display.focus();

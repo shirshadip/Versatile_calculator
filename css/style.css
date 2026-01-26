@@ -201,3 +201,8 @@ a:hover .icon::before {
         font-size: 1.3rem;
     }
 }
+span{
+    display: flex;
+    align-items: center;
+    
+}
