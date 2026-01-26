@@ -1,9 +1,16 @@
+
 /*************************
  * CONFIGURATION
  *************************/
+
 let angleMode = 'degrees'; // DEGREE FIRST
-const display = document.getElementById('display');
+let display = null;
 const EPS = 1e-12;
+
+document.addEventListener('DOMContentLoaded', () => {
+    display = document.getElementById('display');
+    if (display) display.focus();
+});
 
 /*************************
  * BASIC CONTROLS
@@ -92,6 +99,31 @@ function sqrt(x) {
 }
 
 /*************************
+ * FACTORIAL FUNCTION
+ *************************/
+function fact(n) {
+    // Check if n is a non-negative integer
+    if (n < 0 || !Number.isInteger(n)) {
+        throw Error("factorial requires non-negative integer");
+    }
+    
+    // Limit to prevent overflow
+    if (n > 170) {
+        throw Error("factorial overflow");
+    }
+    
+    if (n <= 1) {
+        return 1;
+    }
+    
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+/*************************
  * NUMERIC NORMALIZATION
  *************************/
 function normalize(x) {
@@ -109,7 +141,7 @@ function calculate() {
         const scope = {
             sin, cos, tan,
             asin, acos, atan,
-            ln, log, sqrt,
+            ln, log, sqrt, fact,
             PI: Math.PI,
             E: Math.E
         };
@@ -137,18 +169,28 @@ function calculate() {
 document.addEventListener("keydown", (e) => {
     const key = e.key;
 
-    if (/[0-9+\-*/().]/.test(key)) return;
+    if (/[0-9+\-*/().^]/.test(key)) {
+        e.preventDefault();
+        appendValue(key);
+        return;
+    }
 
     if (key === "Enter" || key === "=") {
         e.preventDefault();
         calculate();
+        return;
     }
 
-    if (key === "Backspace") return;
+    if (key === "Backspace") {
+        e.preventDefault();
+        deleteLast();
+        return;
+    }
 
     if (key === "Escape") {
         e.preventDefault();
         clearDisplay();
+        return;
     }
 
     if (e.ctrlKey || e.metaKey) {
@@ -160,13 +202,15 @@ document.addEventListener("keydown", (e) => {
             l: "ln(",
             r: "sqrt(",
             p: "PI",
-            e: "E"
+            e: "E",
+            f: "fact("
         };
-        if (map[key]) appendValue(map[key]);
+        const lower = key.toLowerCase();
+        if (map[lower]) appendValue(map[lower]);
     }
 });
 
 /*************************
  * AUTO FOCUS
  *************************/
-window.onload = () => display.focus();
+   

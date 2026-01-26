@@ -1,85 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scientific Calculator</title>
-    <link rel="stylesheet" href="css/scientific.css">
-    
-</head>
-<body>
-    <div class="calculator">
-        <input type="text" id="display" placeholder="0" autocomplete="off" readonly>
-        
-        <div class="button-grid">
-            <button onclick="clearDisplay()" class="operator">C</button>
-            <button onclick="deleteLast()" class="operator">←</button>
-            <button onclick="appendValue('(')" class="operator">(</button>
-            <button onclick="appendValue(')')" class="operator">)</button>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Scientific Calculator</title>
+        <link rel="stylesheet" href="css/scientific.css">
+        <script src="javascript/scientific.js"></script>
+    </head>
+
+    <body>
+        <div class="calculator">
+            <input type="text" id="display" placeholder="0" autocomplete="off" readonly>
+
+            <div class="button-grid">
+                <button onclick="clearDisplay()" class="operator">C</button>
+                <button onclick="deleteLast()" class="operator">←</button>
+                <button onclick="appendValue('(')" class="operator">(</button>
+                <button onclick="appendValue(')')" class="operator">)</button>
+            </div>
+
+            <div class="button-grid">
+                <button onclick="appendValue('sin(')" class="function">sin</button>
+                <button onclick="appendValue('cos(')" class="function">cos</button>
+                <button onclick="appendValue('tan(')" class="function">tan</button>
+                <button onclick="appendValue('ln(')" class="function">ln</button>
+            </div>
+
+            <div class="button-grid">
+                <button onclick="appendValue('asin(')" class="function">sin⁻¹</button>
+                <button onclick="appendValue('acos(')" class="function">cos⁻¹</button>
+                <button onclick="appendValue('atan(')" class="function">tan⁻¹</button>
+                <button onclick="appendValue('log(')" class="function">log₁₀</button>
+            </div>
+
+            <div class="button-grid">
+                <button onclick="appendValue('sqrt(')" class="function">√</button>
+                <button onclick="appendValue('^')" class="function">^</button>
+                <button onclick="appendValue('PI')" class="function">π</button>
+                <button onclick="appendValue('E')" class="function">e</button>
+            </div>
+
+            <div class="button-grid">
+                <button onclick="appendValue('7')">7</button>
+                <button onclick="appendValue('8')">8</button>
+                <button onclick="appendValue('9')">9</button>
+                <button onclick="appendValue('/')" class="operator">÷</button>
+            </div>
+
+            <div class="button-grid">
+                <button onclick="appendValue('4')">4</button>
+                <button onclick="appendValue('5')">5</button>
+                <button onclick="appendValue('6')">6</button>
+                <button onclick="appendValue('*')" class="operator">×</button>
+            </div>
+
+            <div class="button-grid">
+                <button onclick="appendValue('1')">1</button>
+                <button onclick="appendValue('2')">2</button>
+                <button onclick="appendValue('3')">3</button>
+                <button onclick="appendValue('-')" class="operator">-</button>
+            </div>
+
+            <div class="button-grid">
+                <button onclick="appendValue('0')" class="wide">0</button>
+                <button onclick="appendValue('.')">.</button>
+                <button onclick="appendValue('+')" class="operator">+</button>
+            </div>
+
+            <div class="button-grid">
+                <button onclick="appendValue('fact(')" class="function">x!</button>
+                <button onclick="calculate()" class="equals">=</button>
+                <button onclick="toggleMode()" class="mode-toggle" id="modeBtn">Degrees</button>
+            </div>
+
+            <div id="homenav">
+                <button onclick="location.href='index.html'">← Home Page</button>
+            </div>
+
+            <div id="footer">
+                <p>&copy; 2026 Calculator App. Made by shirshadip</p>
+            </div>
         </div>
 
-        <div class="button-grid">
-            <button onclick="appendValue('sin(')" class="function">sin</button>
-            <button onclick="appendValue('cos(')" class="function">cos</button>
-            <button onclick="appendValue('tan(')" class="function">tan</button>
-            <button onclick="appendValue('ln(')" class="function">ln</button>
-        </div>
 
-        <div class="button-grid">
-            <button onclick="appendValue('asin(')" class="function">sin⁻¹</button>
-            <button onclick="appendValue('acos(')" class="function">cos⁻¹</button>
-            <button onclick="appendValue('atan(')" class="function">tan⁻¹</button>
-            <button onclick="appendValue('log(')" class="function">log₁₀</button>
-        </div>
+    </body>
 
-        <div class="button-grid">
-            <button onclick="appendValue('sqrt(')" class="function">√</button>
-            <button onclick="appendValue('^')" class="function">^</button>
-            <button onclick="appendValue('Math.PI')" class="function">π</button>
-            <button onclick="appendValue('Math.E')" class="function">e</button>
-        </div>
-
-        <div class="button-grid">
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button onclick="appendValue('/')" class="operator">÷</button>
-        </div>
-
-        <div class="button-grid">
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button onclick="appendValue('*')" class="operator">×</button>
-        </div>
-
-        <div class="button-grid">
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-            <button onclick="appendValue('-')" class="operator">-</button>
-        </div>
-
-        <div class="button-grid">
-            <button onclick="appendValue('0')" class="wide">0</button>
-            <button onclick="appendValue('.')">.</button>
-            <button onclick="appendValue('+')" class="operator">+</button>
-        </div>
-
-        <div class="button-grid">
-            <button onclick="calculate()" class="wide equals">=</button>
-            <button onclick="toggleMode()" class="mode-toggle wide" id="modeBtn">Radians</button>
-        </div>
-
-        <div id="homenav">
-            <button onclick="location.href='index.html'">← Home Page</button>
-        </div>
-
-        <div id="footer">
-            <p>&copy; 2026 Calculator App. Made by shirshadip</p>
-        </div>
-    </div>
-
-    <script src="javascript/scientific.js"></script>
-</body>
 </html>
