@@ -13,10 +13,10 @@ function showfact(){
     const input = document.getElementById("factinput").value;
     const number=Number(input);
     if (isNaN(number)||number<0) {
-        document.getElementById("display").innerText="please enter a valid number to evaluate the facti";
+        document.getElementById("display").innerText="please enter a valid number to evaluate the factorial";
         return;
 
     }
     const result=fact(number);
-    document.getElementById('display').innerText=`Factorial=${number} is ${result}`
+    document.getElementById('display').innerText=`${number}!= ${result}`
 }
