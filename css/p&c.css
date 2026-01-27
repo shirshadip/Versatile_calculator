@@ -67,6 +67,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    
 }
 
 .head {
@@ -84,6 +85,7 @@ body {
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
+    
 }
 
 .head::before {
@@ -116,7 +118,7 @@ body {
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
-#factinput {
+.number {
     width: 100%;
     background: rgba(30, 30, 45, 0.8);
     border: 2px solid rgba(102, 126, 234, 0.5);
@@ -131,12 +133,12 @@ body {
     outline: none;
 }
 
-#factinput::placeholder {
+.number::placeholder {
     color: rgba(255, 255, 255, 0.4);
     font-size: 18px;
 }
 
-#factinput:focus {
+.number:focus {
     border-color: #667eea;
     box-shadow: 0 0 20px rgba(102, 126, 234, 0.4), 0 0 40px rgba(102, 126, 234, 0.2);
     transform: scale(1.02);
@@ -185,7 +187,7 @@ button:active {
     animation: pulse 0.3s ease;
 }
 
-#display {
+.output {
     margin-top: 30px;
     font-size: 32px;
     color: #fff;
@@ -202,6 +204,18 @@ button:active {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-#display:empty {
+.output:empty {
     display: none;
+}
+#homenav button {
+    background: linear-gradient(145deg, #2ecc71, #27ae60);
+    width: 100%;
+    margin-top: 15px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#homenav button:hover {
+    background: linear-gradient(145deg, #3ed680, #2ec96d);
 }
