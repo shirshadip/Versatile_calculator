@@ -1,4 +1,4 @@
-(# Versatile Calculator
+# Versatile Calculator
 
 Versatile Calculator is a lightweight client-side calculator web app that provides Basic, Percentage & Compound, and Scientific modes. It is implemented with simple HTML/CSS/JavaScript so it runs entirely in the browser with no server required.
 
@@ -10,26 +10,24 @@ Versatile Calculator is a lightweight client-side calculator web app that provid
 - Scientific functions: `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `ln`, `log`, `sqrt`, factorial `!`
 - Constants: π and e
 - Degree/radian angle mode toggle for trigonometric functions
-- Keyboard support (numbers, operators, Enter, Backspace, Escape and Ctrl-shortcuts)
+- Keyboard support (numbers, operators, Enter, Backspace, Escape, and Ctrl-shortcuts)
 
 ## Quick Start
 
 1. Clone or download the repository.
 2. Open any of the HTML files in a modern browser (Chrome, Edge, Firefox):
+   - `basic.html` — Basic calculator UI
+   - `p&c.html` — Percentage & Compound calculator UI
+   - `scientific.html` — Scientific calculator UI
 
-```html
-basic.html — Basic calculator UI p&c.html — Percentage & Compound calculator UI
-scientific.html — Scientific calculator UI
-```
-
-Open e.g. `scientific.html` in the browser to use the scientific calculator.
+   Open e.g. `scientific.html` in the browser to use the scientific calculator.
 
 ## File Structure
 
-- `basic.html`, `p&c.html`, `scientific.html`, `index.html` — entry pages
-- `css/` — stylesheets for each view
-- `javascript/` — client-side logic (e.g. `scientific.js`)
-- `test.js`, `test.py` — small test/example files
+- `basic.html`, `p&c.html`, `scientific.html`, `index.html` — Entry pages
+- `css/` — Stylesheets for each view
+- `javascript/` — Client-side logic (e.g., `scientific.js`)
+- `test.js`, `test.py` — Small test/example files
 
 ## Developer Notes
 
@@ -39,7 +37,7 @@ Open e.g. `scientific.html` in the browser to use the scientific calculator.
 
 ## Security Considerations
 
-- The calculator uses the `Function` constructor to evaluate expressions from the UI. To limit risk it supplies a restricted scope of allowed function names and constants; still, avoid running untrusted code snippets in this app.
+- The calculator uses the `Function` constructor to evaluate expressions from the UI. To limit risk, it supplies a restricted scope of allowed function names and constants; still, avoid running untrusted code snippets in this app.
 
 ## Contributing
 
@@ -47,7 +45,7 @@ See `docs/CONTRIBUTING.md` for contribution guidelines and development setup.
 
 ## License
 
-This project does not include a license file. If you intend to publish or share the project, add a `LICENSE` file (for example MIT) and update this section.
+This project does not include a license file. If you intend to publish or share the project, add a `LICENSE` file (for example, MIT) and update this section.
 
 ---
 

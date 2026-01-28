@@ -7,33 +7,67 @@
         <title>Force evaluator</title>
         <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
         <link rel="stylesheet" href="../css/force.css">
-        <script src="javascript/p&c.js"></script>
+        <script src="../javascript/force.js"></script>
         <link rel="stylesheet" href="../css/style.css">
-
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </head>
 
     <body>
-       <div class="head">
-        Select the Expression to evaluate value
-       </div>
-       <ul>
-        <li>
-            <a href="">
-                <span>
-                    <span class="icon"></span>
-                    <p>
-                        F = m.a
-                    </p>
-                </span>
-            </a>
-        </li>
-        <li>
-            
-        </li>
-       </ul>
+        <div class="head">
+            Select the Expression to evaluate value
+        </div>
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="#f=ma">
+                        <span>
+                            <span class="icon"></span>
+                            <p>
+                                F = m.a
+                                According to Newton's Second Law
+                                ( to evaluate F = mg put 9.8(SI) or 980(CGS) for a)
+                            </p>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>
+                            <span class="
+                    icon">
+                            </span>
+                            F = -kx From Spring's Force
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>
+                            <span class="icon">
 
+                            </span>
+                            $$
+                            \boxed{F = G \frac{m_1 m_2}{r^2}}
+                            $$ from universal Gravitational Law
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="head" id="f=ma">
+            For F = ma
+        </div>
+        <div class="input">
+            <input type="text" class="number" name="n" id="m1" placeholder="Enter the mass (m)">
+            <input type="text" class="number" name="r" id="a1" placeholder="Enter the accelaration (a)">
+            <h3>
+                Note: put g instead of a to calculate the force for F= mg
+            </h3>
+            <button onclick="showfma()">Enter</button>
+            <div class="output" id="displayfma"></div>
+        </div>
         <div id="homenav">
-            <button onclick="location.href='index.html'">← Home Page</button>
+            <button onclick="location.href='../index.html'">← Home Page</button>
         </div>
         <div id="footer">
             <p>&copy; 2026 Calculator App • Made by shirshadip</p>
