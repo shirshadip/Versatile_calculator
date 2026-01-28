@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Versatile Calculator Feedback</title>
+        <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/feedback.css">
+    </head>
+
+    <body>
+
+        <h2>Feedback</h2>
+        <p>
+            Give feedbacks to Improve the website
+        </p>
+
+        <form id="feedbackForm">
+            <input type="text" id="name" placeholder="Name" required><br><br>
+            <input type="email" id="email" placeholder="Email" required><br><br>
+            <textarea id="feedback" placeholder="Your feedback" required></textarea><br><br>
+            <button type="submit">Submit</button>
+        </form>
+
+        <p id="status"></p>
+
+
+        <script type="module">
+            import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+            // 🔹 Replace these with your actual values
+            const SUPABASE_URL = "https://ggxxuvpyjbrsyaqnztbx.supabase.co";
+            const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdneHh1dnB5amJyc3lhcW56dGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk1OTE5NjksImV4cCI6MjA4NTE2Nzk2OX0.vRLPSQ2hkainNMLWAoxHeW3LhEW1M25eMEANd71PQBc";
+
+            const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            const form = document.getElementById("feedbackForm");
+            const status = document.getElementById("status");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const feedback = document.getElementById("feedback").value;
+
+                const { error } = await supabase
+                    .from("feedback")
+                    .insert([{ name, email, feedback }]);
+
+                if (error) {
+                    status.textContent = "❌ Error submitting feedback";
+                    console.error(error);
+                } else {
+                    status.textContent = "✅ Feedback submitted successfully!";
+                    form.reset();
+                }
+            });
+        </script>
+        <div id="homenav">
+            <button onclick="location.href='index.html'">← Home Page</button>
+        </div>
+        <div id="footer">
+            <p>&copy; 2026 Calculator App • Made by shirshadip</p>
+        </div>
+
+    </body>
+
+</html>
