@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unit Converter</title>
+        <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/unit.css">
+        <script src="javascript/unit.js"></script>
+
+    </head>
+
+    <body>
+        <div class="head">
+            convert Weight
+        </div>
+        <div class="input">
+            <select name="units" id="weightfrom">
+                <option value="">--Select--</option>
+                <option value="kilo">Kilogram</option>
+                <option value="mlg">Gram</option>
+                <option value="centi">Centigram</option>
+                <option value="pounds">pounds</option>
+            </select>
+            <input type="number" name="input" id="weightinput" placeholder="Enter value">
+            <p>To 👉</p>
+            <select name="units" id="weightto">
+                <option value="">--Select--</option>
+                <option value="kilo">Kilogram</option>
+                <option value="mlg">Gram</option>
+                <option value="centi">Centigram</option>
+                <option value="pounds">Pounds</option>
+            </select>
+            <button onclick="showunit()">Show result</button>
+            <br>
+            <div class="output" id="displayunitweight"></div>
+        </div>
+        <script>
+            function showunit() {
+                const value = parseFloat(document.getElementById("weightinput").value);
+                const fromUnit = document.getElementById("weightfrom").value;
+                const toUnit = document.getElementById("weightto").value;
+                const output = document.getElementById("displayunitweight");
+
+                if (!value || !fromUnit || !toUnit) {
+                    output.innerText = "Please fill all fields";
+                    return;
+                }
+
+                if (fromUnit === toUnit) {
+                    output.innerText = `Result: ${value}`;
+                    return;
+                }
+
+                // Conversion factors (everything converted to grams as base)
+                const units = {
+                    kilo: 1000,      // 1 kilogram = 1000 grams
+                    mlg: 1,          // 1 gram = 1 gram
+                    centi: 0.01,      // 1 centigram = 0.01 grams
+                    pounds:453.59237
+                };
+
+                // Convert input value to grams first
+                const valueInGrams = value * units[fromUnit];
+
+                // Convert from grams to target unit
+                const result = valueInGrams / units[toUnit];
+
+                output.innerText = `Result: ${result.toFixed(4)} ${getUnitName(toUnit)}`;
+            }
+
+            function getUnitName(unit) {
+                const names = {
+                    kilo: 'kg',
+                    mlg: 'g',
+                    centi: 'cg'
+                };
+                return names[unit] || unit;
+            }
+        </script>
+
+
+    </body>
+
+</html>
