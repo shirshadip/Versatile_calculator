@@ -36,48 +36,33 @@
             <br>
             <div class="output" id="displayunitweight"></div>
         </div>
-        <script>
-            function showunit() {
-                const value = parseFloat(document.getElementById("weightinput").value);
-                const fromUnit = document.getElementById("weightfrom").value;
-                const toUnit = document.getElementById("weightto").value;
-                const output = document.getElementById("displayunitweight");
+        <br>
+        <div class="head">
+            Force Unit converter
+        </div>
+        <div class="input">
+            <select id="forcefrom">
+                <option value="">--Select--</option>
+                <option value="newton">Newton</option>
+                <option value="dyne">Dyne</option>
+            </select>
 
-                if (!value || !fromUnit || !toUnit) {
-                    output.innerText = "Please fill all fields";
-                    return;
-                }
+            <input type="text" id="forceinput" placeholder="e.g. 1x10^5 or 100000">
 
-                if (fromUnit === toUnit) {
-                    output.innerText = `Result: ${value}`;
-                    return;
-                }
+            <p>To 👉</p>
 
-                // Conversion factors (everything converted to grams as base)
-                const units = {
-                    kilo: 1000,      // 1 kilogram = 1000 grams
-                    mlg: 1,          // 1 gram = 1 gram
-                    centi: 0.01,      // 1 centigram = 0.01 grams
-                    pounds:453.59237
-                };
+            <select id="forceto">
+                <option value="">--Select--</option>
+                <option value="newton">Newton</option>
+                <option value="dyne">Dyne</option>
+            </select>
 
-                // Convert input value to grams first
-                const valueInGrams = value * units[fromUnit];
+            <button onclick="showforce()">Show result</button>
 
-                // Convert from grams to target unit
-                const result = valueInGrams / units[toUnit];
+            <div class="output" id="displayforce"></div>
+        </div>
 
-                output.innerText = `Result: ${result.toFixed(4)} ${getUnitName(toUnit)}`;
-            }
-
-            function getUnitName(unit) {
-                const names = {
-                    kilo: 'kg',
-                    mlg: 'g',
-                    centi: 'cg'
-                };
-                return names[unit] || unit;
-            }
+        <script src="javascript/unit.js">
         </script>
         <div id="homenav">
             <button onclick="location.href='index.html'">← Home Page</button>
