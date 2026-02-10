@@ -98,6 +98,7 @@ function parseScientificInput(input) {
 
 function formatScientific(num) {
     if (num === 0) return "0";
+    if (num === 1) return "1";
 
     const [coeff, exp] = num.toExponential().split("e");
     const power = parseInt(exp, 10);
