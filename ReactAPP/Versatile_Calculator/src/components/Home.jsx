@@ -32,7 +32,7 @@ function Home() {
                         </a>
                     </li>
                     <li>
-                        <a href="physics.html">
+                        <a onClick={() => navigate("/physics")}>
                             <span>
                                 <span className="icon"></span>
 
@@ -41,7 +41,7 @@ function Home() {
                         </a>
                     </li>
                     <li>
-                        <a href="unit.html">
+                        <a onClick={() => navigate("/unit")}>
                             <span>
                                 <span className="icon"></span>
 
@@ -75,7 +75,7 @@ function Home() {
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/shirshadip/Versatile_calculator" target="_blank">
+                        <a href="https://github.com/shirshadip/Versatile_calculator" target="_blank" rel="noreferrer">
                             <span>
                                 <span className="icon"></span>
                                 Explore The Source code on Github

@@ -40,7 +40,12 @@ export function calculate() {
 }
 
 export function initKeyboard() {
-    document.addEventListener('keydown', (e) => {
+    // prevent adding multiple handlers in the same page/app
+    if (document.__vc_keydown_handler) {
+        return () => {}; // already initialized by this script
+    }
+
+    const handler = (e) => {
         const key = e.key;
 
         if (/[0-9.]/.test(key)) { e.preventDefault(); appendValue(key); return; }
@@ -50,5 +55,15 @@ export function initKeyboard() {
         if (key === 'Enter' || key === '=') { e.preventDefault(); calculate(); return; }
         if (key === 'Backspace') { e.preventDefault(); deleteLast(); return; }
         if (key === 'Escape' || key === 'Delete') { e.preventDefault(); clearDisplay(); return; }
-    });
+    };
+
+    document.addEventListener('keydown', handler);
+    // store reference so subsequent calls can detect initialization
+    document.__vc_keydown_handler = handler;
+
+    // Return cleanup so callers (React effects) can remove the handler on unmount
+    return () => {
+        document.removeEventListener('keydown', handler);
+        try { delete document.__vc_keydown_handler; } catch (e) { document.__vc_keydown_handler = undefined; }
+    };
 }

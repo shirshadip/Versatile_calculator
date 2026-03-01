@@ -1,14 +1,17 @@
 import { useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
+import { appendValue, calculate, clearDisplay, deleteLast, init, initKeyboard } from "../javascript/basic.js";
 import "../styles/basic.css";
-import { init, initKeyboard, appendValue, clearDisplay, deleteLast, calculate } from "../javascript/basic.js";
 
 function Basic() {
     const displayRef = useRef(null);
 
     useEffect(() => {
         init(displayRef.current);
-        initKeyboard();
+        const cleanupKeyboard = initKeyboard();
+        return () => {
+            if (typeof cleanupKeyboard === 'function') cleanupKeyboard();
+        };
     }, []);
 
     return (
