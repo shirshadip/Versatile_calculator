@@ -24,8 +24,8 @@ function Home() {
                         </a>
                     </li>
                     <li>
-                        <a href="scientific.html">
-                            <span style={{ display: 'flex', alignItems: 'center' }}>
+                        <a onClick={() => navigate("/scientific")}>
+                            <span style={{ display: 'flex', alignItems: 'center',cursor:'pointer' }}>
                                 <span className="icon"></span>
                                 Scientific Calculator
                             </span>
@@ -77,7 +77,7 @@ function Home() {
                     <li>
                         <a href="https://github.com/shirshadip/Versatile_calculator" target="_blank">
                             <span>
-                                <span class="icon"></span>
+                                <span className="icon"></span>
                                 Explore The Source code on Github
                             </span>
                         </a>

@@ -3,6 +3,7 @@ import './App.css'
 import About from './components/About'
 import Basic from './components/basic'
 import Home from './components/Home'
+import Scientific from './components/scientific'
 import Placeholder from './components/Placeholder'
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/basic' element={<Basic />} />
-        <Route path='/scientific' element={<Placeholder title="Scientific Calculator" />} />
+        <Route path='/scientific' element={<Scientific />} />
         <Route path='/physics' element={<Placeholder title="Physics" />} />
         <Route path='/unit' element={<Placeholder title="Unit Converter" />} />
         <Route path='/permutations' element={<Placeholder title="Permutations & Combinations" />} />

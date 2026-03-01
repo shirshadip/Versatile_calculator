@@ -1,38 +1,23 @@
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
 import "../styles/basic.css";
+import { init, initKeyboard, appendValue, clearDisplay, deleteLast, calculate } from "../javascript/basic.js";
 
 function Basic() {
-    const [display, setDisplay] = useState("");
+    const displayRef = useRef(null);
 
-    const appendValue = (value) => {
-        setDisplay((prev) => prev + value);
-    };
-
-    const clearDisplay = () => {
-        setDisplay("");
-    };
-
-    const deleteLast = () => {
-        setDisplay((prev) => prev.slice(0, -1));
-    };
-
-    const calculate = () => {
-        try {
-            setDisplay(eval(display).toString());
-        } catch {
-            setDisplay("Error");
-        }
-    };
+    useEffect(() => {
+        init(displayRef.current);
+        initKeyboard();
+    }, []);
 
     return (
         <>
-        <script src="./javascript/basic.js"></script>
             <div className="Calculator">
                 <input
+                    ref={displayRef}
                     type="text"
                     id="display"
-                    value={display}
                     placeholder="0"
                     autoComplete="off"
                     readOnly
