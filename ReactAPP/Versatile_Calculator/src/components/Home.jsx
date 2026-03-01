@@ -50,8 +50,8 @@ function Home() {
                         </a>
                     </li>
                     <li>
-                        <a href="p&c.html">
-                            <span>
+                        <a onClick={()=>navigate("/permutationscombinations")}>
+                            <span style={{cursor:'pointer'}}>
                                 <span className="icon"></span>
                                 Permutations and combinations
 
@@ -59,7 +59,7 @@ function Home() {
                         </a>
                     </li>
                     <li>
-                        <a href="s&s.html">
+                        <a onClick={()=>navigate("/sequenceseries")}>
                             <span>
                                 <span className="icon"></span>
                                 Sequence and Series
@@ -67,8 +67,8 @@ function Home() {
                         </a>
                     </li>
                     <li>
-                        <a href="feedback.html">
-                            <span>
+                        <a onClick={()=>navigate("/feedback")}>
+                            <span style={{cursor:'pointer'}}>
                                 <span className="icon"></span>
                                 Give a feedback to improve the website
                             </span>
