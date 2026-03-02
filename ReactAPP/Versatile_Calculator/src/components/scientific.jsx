@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/scientific.css";
 import { useNavigate } from "react-router-dom";
-
+import '../App.css'
 function Scientific() {
     const navigate = useNavigate();
     const [display, setDisplay] = useState("");
@@ -148,9 +148,6 @@ function Scientific() {
                     <button onClick={() => navigate("/")}>← Home Page</button>
                 </div>
 
-                <div id="footer">
-                    <p>&copy; 2026 Calculator App. Made by shirshadip</p>
-                </div>
             </div>
         </>
     );

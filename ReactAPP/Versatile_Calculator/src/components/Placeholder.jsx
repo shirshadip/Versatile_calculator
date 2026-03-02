@@ -1,5 +1,5 @@
 import '../styles/home.css'
-
+import '../App.css'
 function Placeholder({ title }) {
     return (
         <>
@@ -13,9 +13,7 @@ function Placeholder({ title }) {
                 <p>This is a placeholder page for {title}.</p>
             </div>
 
-            <div id="footer">
-                <p>&copy; 2026 Calculator App. Made by Shirshadip</p>
-            </div>
+          
         </>
     )
 }

@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
 import { appendValue, calculate, clearDisplay, deleteLast, init, initKeyboard } from "../javascript/basic.js";
 import "../styles/basic.css";
+import '../App.css'
 
 function Basic() {
     const displayRef = useRef(null);
@@ -65,9 +66,7 @@ function Basic() {
                 <Link to="/scientific" className="btn-scientific">🔬 Scientific Calculator</Link>
             </div>
 
-            <div id="footer">
-                <p>&copy; 2026 Calculator App • Made by Shirshadip</p>
-            </div>
+           
         </>
     );
 }

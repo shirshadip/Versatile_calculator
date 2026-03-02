@@ -1,6 +1,6 @@
 import '../styles/home.css';
 import { useNavigate } from 'react-router-dom';
-
+import '../App.css'
 function Home() {
     const navigate = useNavigate();
 
@@ -60,7 +60,7 @@ function Home() {
                     </li>
                     <li>
                         <a onClick={()=>navigate("/sequenceseries")}>
-                            <span>
+                            <span style={{cursor:'pointer'}}>
                                 <span className="icon"></span>
                                 Sequence and Series
                             </span>
@@ -88,9 +88,7 @@ function Home() {
 
             </div>
 
-            <div id="footer">
-                <p>&copy; 2026 Calculator App. Made by shirshadip</p>
-            </div>
+           
         </>
     )
 }

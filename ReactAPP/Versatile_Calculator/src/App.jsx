@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
-import './App.css'
 import About from './components/About'
 import Basic from './components/basic'
 import Home from './components/Home'
@@ -9,9 +8,11 @@ import Permutationscombinations from './components/permcomb'
 import Sequenceseries from './components/sequenceseries'
 import Placeholder from './components/Placeholder'
 import Feedback from "./components/feedback"
+import Footer from "./components/footer"
 
 function App() {
   return (
+    <>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
@@ -25,6 +26,8 @@ function App() {
         <Route path='/feedback' element={<Feedback/>} />
       </Routes>
     </BrowserRouter>
+    <Footer/>
+</>
   )
 }
 

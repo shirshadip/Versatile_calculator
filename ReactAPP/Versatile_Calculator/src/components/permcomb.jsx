@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/p&c.css"; // uncomment when ready
-
+import '../App.css'
 // ── Math helpers ──────────────────────────────────────────────────────────────
 
 function fact(n) {
@@ -99,6 +99,7 @@ function PermComb() {
             {/* ── Factorial ── */}
             <div className="head">Calculate Factorial</div>
             <div className="input">
+                <p>Expression = n!</p>
                 <input
                     ref={factInputRef}
                     type="text"
@@ -133,9 +134,6 @@ function PermComb() {
                 <button onClick={() => navigate("/")}>← Home Page</button>
             </div>
 
-            <div id="footer">
-                <p>&copy; 2026 Calculator App • Made by shirshadip</p>
-            </div>
         </>
     );
 }

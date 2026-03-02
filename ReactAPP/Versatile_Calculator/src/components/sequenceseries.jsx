@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/s&s.css";
-
+import '../App.css'
 // ── Math helpers ──────────────────────────────────────────────────────────────
 
 function tn_ap(a, n, d) {
@@ -106,9 +106,7 @@ function SequenceSeries() {
                 <button onClick={() => navigate("/")}>← Home Page</button>
             </div>
 
-            <div id="footer">
-                <p>&copy; 2026 Calculator App • Made by shirshadip</p>
-            </div>
+            
         </>
     );
 }

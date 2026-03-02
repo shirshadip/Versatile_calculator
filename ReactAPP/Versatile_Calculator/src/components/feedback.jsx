@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase";
 import "../styles/feedback.css";
-
+import '../App.css'
 function Feedback() {
     const navigate = useNavigate();
 
@@ -74,9 +74,6 @@ function Feedback() {
                 <button onClick={() => navigate("/")}>← Home Page</button>
             </div>
 
-            <div id="footer">
-                <p>&copy; 2026 Calculator App • Made by shirshadip</p>
-            </div>
         </>
     );
 }
