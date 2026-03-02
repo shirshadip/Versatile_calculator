@@ -33,7 +33,7 @@ function Home() {
                     </li>
                     <li>
                         <a onClick={() => navigate("/physics")}>
-                            <span>
+                            <span style={{cursor:'pointer'}}>
                                 <span className="icon"></span>
 
                                 Physics
@@ -42,7 +42,7 @@ function Home() {
                     </li>
                     <li>
                         <a onClick={() => navigate("/unit")}>
-                            <span>
+                            <span style={{cursor:'pointer'}}> 
                                 <span className="icon"></span>
 
                                 Unit converter
