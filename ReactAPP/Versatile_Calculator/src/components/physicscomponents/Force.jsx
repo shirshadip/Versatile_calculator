@@ -1,32 +1,43 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import "/App.css"
 
-export default function Force() {
+function ForceCalculator() {
   const navigate = useNavigate();
+
   const [mass, setMass] = useState("");
   const [acceleration, setAcceleration] = useState("");
-  const [siResult, setSiResult] = useState("");
-  const [cgsResult, setCgsResult] = useState("");
+  const [result, setResult] = useState(null);
+  const [converteButton, setButton] = useState(false);
+  const [convertedresult, setConverted] = useState("");
 
-  const getValues = () => {
+  function showForce() {
     const m = Number(mass);
-    const a = acceleration === "g" ? 9.8 : Number(acceleration);
-    return { m, a };
-  };
+    const a = Number(acceleration);
 
-  const showfmaSI = () => {
-    const { m, a } = getValues();
-    const result = m * a;
-    setSiResult(`F=${m}x${a} is => ${result} Newton`);
-  };
+    if (isNaN(m) || isNaN(a)) {
+      setResult("Enter valid numbers");
+      return;
+    }
 
-  const showfmaCGS = () => {
-    const m = Number(mass);
-    const a = acceleration === "g" ? 980 : Number(acceleration);
-    const result = m * a;
-    setCgsResult(`F=${m}x${a} is => ${result} Dyne`);
-  };
+    const force = m * a;
+    
+    setResult(force);
+    setButton(true);
+    return force;
+
+  }
+  function convertSI() {
+    const ForceEvaluated = showForce();
+    const converted = ForceEvaluated / 100000;
+    
+    setConverted(converted+"N");
+
+  }
+  function convertCGS() {
+    const ForceEvaluated = showForce();
+    const converted = ForceEvaluated * 100000;
+    setConverted(converted +"dyne");
+  }
 
   return (
     <div>
@@ -35,7 +46,7 @@ export default function Force() {
       <div className="nav">
         <ul>
           <li>
-            <a href="#f=ma">
+            <a href="#fma">
               <span>
                 <span className="icon"></span>
                 <p>
@@ -45,6 +56,7 @@ export default function Force() {
               </span>
             </a>
           </li>
+
           <li>
             <a href="#">
               <span>
@@ -53,6 +65,7 @@ export default function Force() {
               </span>
             </a>
           </li>
+
           <li>
             <a href="#">
               <span>
@@ -64,43 +77,50 @@ export default function Force() {
         </ul>
       </div>
 
-      <div className="head" id="f=ma">
+      <div className="head" id="fma">
         For F = ma
       </div>
 
       <div className="input">
         <input
-          type="text"
+          type="number"
           className="number"
-          id="m1"
           placeholder="Enter the mass (m)"
           value={mass}
           onChange={(e) => setMass(e.target.value)}
         />
+
         <input
-          type="text"
+          type="number"
           className="number"
-          id="a1"
           placeholder="Enter the acceleration (a)"
           value={acceleration}
           onChange={(e) => setAcceleration(e.target.value)}
         />
-        <h3>Note: put g instead of a to calculate the force for F = mg</h3>
 
-        <button onClick={showfmaSI}>Get output in SI</button>
-        <pre>   </pre>
-        <button onClick={showfmaCGS}>Get output in CGS</button>
+        <h3>Note: put 9.8 instead of a to calculate F = mg</h3>
 
-        {siResult && (
-          <div className="output" id="displayfmaSI">
-            <p>{siResult}</p>
-          </div>
-        )}
-        {cgsResult && (
-          <div className="output" id="displayfmaCGS">
-            <p>{cgsResult}</p>
-          </div>
-        )}
+        <button onClick={showForce}>Show result</button>
+
+        <div className="output">
+          {result !== null && (
+            <p>
+              F = {mass} × {acceleration} = {result} Newton
+            </p>
+          )}
+        </div>
+        {converteButton &&
+          <div><button onClick={convertSI}>
+            convert into SI
+          </button>
+            <button onClick={convertCGS}>
+              convert into CGS
+            </button></div>}
+        <div className="output">
+          {convertedresult !== null && (
+            <p>{convertedresult}</p>
+          )}
+        </div>
       </div>
 
       <div id="homenav">
@@ -109,3 +129,5 @@ export default function Force() {
     </div>
   );
 }
+
+export default ForceCalculator;
