@@ -1,18 +1,25 @@
 # Architecture Overview
 
-This project is intentionally simple and file-based. The architecture is static-client only:
+This repository contains two related implementations of calculator UI/logic:
 
-- Presentation: HTML files (`*.html`) provide layout and markup for each calculator view.
-- Styling: CSS files inside `css/` implement visual layout and responsive behavior.
-- Logic: JavaScript files inside `javascript/` contain the interactive behavior and computation routines.
+- Static client demos (legacy): a set of HTML/CSS/JavaScript pages under the `static/` directory. These are simple, self-contained pages intended for teaching and quick experimentation.
+- Modern React frontend: a Vite + React app located at `ReactAPP/Versatile_Calculator` that provides a more maintainable component structure and modern dev workflow.
 
-Key implementation details:
+Core responsibilities
 
-- `scientific.js` exposes math helper functions (`sin`, `cos`, `ln`, `sqrt`, `fact`, etc.) and a `calculate()` entry point. The evaluator constructs a `Function` with those symbols passed as parameters to keep a narrow evaluation scope.
-- Angle mode handling: the script keeps `angleMode` state and converts between degrees/radians as required by trig functions.
-- UI bindings: buttons append tokens to the `display` input; the equals button triggers `calculate()`.
+- Presentation: static HTML in `static/` for demos; React components in `ReactAPP/Versatile_Calculator/src/components` for the modern app.
+- Styling: per-demo CSS in `static/css/`; the React app uses styles under `ReactAPP/Versatile_Calculator/src` (check `styles/` or component-level CSS modules).
+- Logic: demo JavaScript lives in `static/javascript/` (for example `static/javascript/scientific.js`). The React app implements the calculator logic inside components and helper modules in the React source tree.
 
-Design trade-offs:
+Key implementation notes
 
-- Pros: zero-dependency, portable, easy to inspect and modify.
-- Cons: expression evaluation relies on `Function` and token-based appends; adding a full parser would improve security and correctness for complex expressions.
+- The static scientific demo exposes helpers (sin, cos, ln, sqrt, factorial, etc.) and evaluates expressions in the browser. The evaluator is intentionally minimal and uses a restricted evaluation scope.
+- Angle mode (degrees/radians) is a runtime state used by trig helpers in both the demo and React implementations where applicable.
+- The React app splits UI and logic into components and modules, improving testability and maintainability compared to the single-file demo scripts.
+
+Design trade-offs and recommendations
+
+- Pros: the static demos are zero-dependency and easy to inspect; the React app provides a modern developer experience and better organization.
+- Cons: the legacy demos rely on ad-hoc evaluation (e.g., `Function`) which has security and correctness limitations. Consider migrating expression evaluation to a dedicated parser/evaluator (for example, a small mathematical expression parser library) for safety and correctness.
+
+If you plan to extend the project, prefer adding new features to the React app or factor shared logic into reusable modules that can be tested independently.

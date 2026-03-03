@@ -1,31 +1,34 @@
-# Usage Guide
+## Usage Guide
 
 This document explains how to use the calculators provided by the project.
 
-## Opening the app
+## Opening the static demos
 
-- No build or server is required. Open the HTML files directly in your browser:
-  - `index.html` — landing page linking to other calculators
-  - `basic.html` — basic arithmetic operations
-  - `p&c.html` — percentage and compound-interest helpers
-  - `scientific.html` — scientific calculator with trig, logs, etc.
+- The static demo pages are in the `static/` folder. You can open them directly in a browser or serve the folder from a local HTTP server for consistent behavior (recommended).
 
-## Scientific calculator (example)
+- Example pages:
+  - `static/index.html` — landing page linking to other calculators
+  - `static/basic.html` — basic arithmetic operations
+  - `static/p&c.html` — percentage and compound-interest helpers
+  - `static/scientific.html` — scientific calculator with trig, logs, etc.
 
-- Type numbers and operators with the mouse or keyboard.
-- Trigonometric functions accept input either in degrees or radians depending on the mode toggle labeled `Degrees`/`Radians`.
-- Common keyboard shortcuts:
+
+
+## Using the scientific calculator (static demo)
+
+- Enter numbers and operators using mouse or keyboard.
+- Trigonometric functions respect the `Degrees`/`Radians` mode toggle.
+- Keyboard shortcuts (static demo):
   - `Enter` or `=`: evaluate expression
   - `Backspace`: delete last character
   - `Escape`: clear display
-  - `Ctrl` (or `Cmd`) + `s/c/t/l/r/p/e/f`: append `sin(`, `cos(`, `tan(`, `ln(`, `sqrt(`, `PI`, `E`, `fact(` respectively
 
-## Expression syntax
+## Expression syntax (static demo)
 
 - Use `^` for exponentiation (the UI converts to `**` internally).
-- Use parentheses `(` and `)` to group expressions.
-- Functions are invoked using a trailing `(` (e.g. `sin(30)` or `sqrt(2)`).
-- Factorial uses `fact(n)` in the expression (the UI button inserts `fact(`).
+- Parentheses `(` and `)` are supported for grouping.
+- Functions use `fn(` syntax, e.g. `sin(30)`, `sqrt(2)`.
+- Factorial is provided as `fact(n)` in the static demo.
 
 Examples:
 
@@ -35,7 +38,23 @@ log(100) + ln(2)
 fact(5) + 3^2
 ```
 
+## React app (developer) — Quick start
+
+The modern app is in `ReactAPP/Versatile_Calculator` and uses Vite.
+
+1. Install Node.js (LTS recommended).
+2. From the project root:
+
+```powershell
+cd ReactAPP/Versatile_Calculator
+npm install
+npm run dev
+```
+
+3. Open the dev URL printed by Vite (commonly http://localhost:5173).
+
 ## Troubleshooting
 
-- If the display shows `Error`, the input either caused a math domain error or a syntax error. Clear the input and try a simpler expression.
-- If buttons do not respond, ensure JavaScript is enabled in the browser and that `javascript/scientific.js` is present.
+- If the static pages show `Error` on evaluate, try a simpler expression — it may be a domain or syntax error.
+- If static buttons are unresponsive, confirm that `static/javascript/` files are present and that JavaScript is enabled in your browser.
+- For the React app, if `npm install` fails, ensure you have a supported Node version and that `npm` is available; check `ReactAPP/Versatile_Calculator/package.json` for expected Node engine ranges.

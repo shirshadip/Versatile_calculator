@@ -1,52 +1,79 @@
 # Versatile Calculator
 
-Versatile Calculator is a lightweight client-side calculator web app that provides Basic, Percentage & Compound, and Scientific modes. It is implemented with simple HTML/CSS/JavaScript so it runs entirely in the browser with no server required.
+Versatile Calculator is a collection of client-side calculator demos and a modern React-based calculator UI. The repository contains static HTML/CSS/JavaScript demo pages (legacy) and a Vite + React app under `ReactAPP/Versatile_Calculator`.
 
 ---
 
-## Features
+## What you'll find here
 
-- Basic arithmetic: `+`, `-`, `*`, `/`, `^` (power)
-- Scientific functions: `sin`, `cos`, `tan`, `asin`, `acos`, `atan`, `ln`, `log`, `sqrt`, factorial `!`
-- Constants: π and e
-- Degree/radian angle mode toggle for trigonometric functions
-- Keyboard support (numbers, operators, Enter, Backspace, Escape, and Ctrl-shortcuts)
+- Static demo pages (client-side HTML/CSS/JS) in the `static/` directory:
+  - Basic, Percentage & Compound, Scientific, physics demos and supporting assets.
+- A modern React frontend in `ReactAPP/Versatile_Calculator` (Vite + React).
+- Documentation and contribution guidelines in the `docs/` directory.
 
-## Quick Start
+## Features (high level)
 
-1. Clone or download the repository.
-2. Open any of the HTML files in a modern browser (Chrome, Edge, Firefox):
-   - `basic.html` — Basic calculator UI
-   - `p&c.html` — Percentage & Compound calculator UI
-   - `scientific.html` — Scientific calculator UI
+- Basic arithmetic and scientific functions (sin, cos, tan, ln, log, sqrt, factorial, etc.)
+- Constants such as π and e
+- Degree/radian toggle for trig functions in applicable pages
+- Keyboard support on static pages
 
-   Open e.g. `scientific.html` in the browser to use the scientific calculator.
+## Quick Start — Static demo pages
 
-## File Structure
+- Open a static demo directly in your browser by opening a file from the `static/` folder, for example:
 
-- `basic.html`, `p&c.html`, `scientific.html`, `index.html` — Entry pages
-- `css/` — Stylesheets for each view
-- `javascript/` — Client-side logic (e.g., `scientific.js`)
-- `test.js`, `test.py` — Small test/example files
+- `static/index.html` — open in Chrome, Edge or Firefox
 
-## Developer Notes
 
-- All calculator logic lives in the JavaScript files under `javascript/`.
-- `scientific.js` exposes a `calculate()` routine that evaluates expressions inside a safe scope (predefined math functions and constants). The UI buttons append tokens to the input display and call `calculate()` to evaluate.
-- The project intentionally keeps everything client-side to be portable and dependency-free.
 
-## Security Considerations
+## Quick Start — React app (development)
 
-- The calculator uses the `Function` constructor to evaluate expressions from the UI. To limit risk, it supplies a restricted scope of allowed function names and constants; still, avoid running untrusted code snippets in this app.
+The modern React application is located at `ReactAPP/Versatile_Calculator` and uses Vite.
 
-## Contributing
+1. Install Node.js (LTS recommended).
+2. From the repository root run:
 
-See `docs/CONTRIBUTING.md` for contribution guidelines and development setup.
+   ```powershell
+   cd ReactAPP/Versatile_Calculator
+   npm install
+   npm run dev
+   ```
+
+3. Open the local dev URL printed by Vite (usually http://localhost:5173).
+
+Notes:
+
+- There is also a `package.json` at `ReactAPP` for other front-end tooling — check that folder if you work across the broader React project.
+
+## Developer notes
+
+- Static client logic and styles live under `static/javascript` and `static/css`.
+- The React app source is under `ReactAPP/Versatile_Calculator/src` and component files are under `src/components`.
+- A small set of educational physics pages and assets are available in `physicspages/`, `images/` and `videos/`.
+
+## Tests and examples
+
+- There are small example/test files such as `static/test.js` and `static/test.py` for experimentation.
+
+## Documentation
+
+- See the `docs/` folder for detailed documents:
+  - `docs/USAGE.md` — usage notes and examples
+  - `docs/ARCHITECTURE.md` — project layout and implementation notes
+  - `docs/CONTRIBUTING.md` — how to contribute
+
+## Security
+
+- The static pages evaluate mathematical expressions in the browser; some pages use `Function` or similar evaluation techniques. Do not paste or run untrusted code in the calculator input.
 
 ## License
 
-This project does not include a license file. If you intend to publish or share the project, add a `LICENSE` file (for example, MIT) and update this section.
+This repository currently does not include a `LICENSE` file. If you plan to publish or distribute the project, add an appropriate license (for example, MIT) to the repository root.
 
 ---
 
-Additional docs are available in the `docs/` directory for usage, architecture, and contribution guidance.
+If you'd like, I can also:
+
+- Add a short `CONTRIBUTING` summary into this `README`.
+- Create a minimal `LICENSE` file (MIT) and commit it.
+- Add a short `run` script to `ReactAPP/Versatile_Calculator` to simplify dev start-up.

@@ -1,25 +1,47 @@
 # Contributing
 
-Thanks for considering contributing! The project is small and contributions are welcome.
+Thanks for considering contributing! The project is small and contributions are welcome. Below are recommended steps and a few project-specific notes to help your changes land quickly.
 
-How to contribute:
+How to contribute
 
-1. Fork the repository and create a feature branch.
-2. Make minimal, focused changes with clear commit messages.
-3. Prefer small pull requests that make one change at a time.
+1. Fork the repository and create a descriptive feature branch (e.g. `feature/physics-units`).
+2. Make focused changes with clear commit messages and a single purpose per pull request.
+3. Open a pull request against `main` with a short description of the change and any manual test steps.
 
-Developer workflow:
+Quick developer workflows
 
-- No build system is required. Edit files in your editor and open the HTML to test changes in a browser.
-- If you add new JavaScript files, keep functions modular and avoid creating global variables where possible.
+- Static demos (edit + test): edit files under `static/` and open the corresponding HTML in your browser, or serve the `static/` folder with a local HTTP server.
+- React app (development): the modern app is in `ReactAPP/Versatile_Calculator`. Use the Vite dev server:
 
-Areas where help is useful:
+```powershell
+cd ReactAPP/Versatile_Calculator
+npm install
+npm run dev
+```
 
-- Add automated tests or examples (a small test harness could be added with Node or Pytest).
-- Replace the naive evaluation approach with a safer expression parser.
-- Improve accessibility of UI controls and add unit tests for math helpers.
+The dev server provides hot-reload and faster iteration for React components.
 
-Style guidelines:
+What to include in PRs
 
-- Follow the existing code style: concise functions and clear variable names.
-- Add comments only when the intent is non-obvious.
+- A short description of the change and the motivation.
+- A list of manual steps to test the change (pages to open, inputs to use).
+- If the change affects the React app, mention any new npm scripts or dependencies.
+
+Suggestions and areas for help
+
+- Add automated tests or examples. Consider adding a small Jest setup or Node-based tests for shared logic in the React app.
+- Replace the naive evaluator used by static demos with a safer expression parser/evaluator.
+- Improve accessibility (ARIA attributes, keyboard navigation) across demos and React components.
+
+Style guidelines
+
+- Keep functions small and single-responsibility.
+- Avoid global variables in JavaScript; prefer module exports/imports.
+- Use clear, descriptive names for components and helper functions.
+
+Communication
+
+- If you open a larger change, create an issue first to discuss the approach.
+- Mention any compatibility or browser assumptions in the PR description.
+
+Thank you — your contributions make this project better for everyone.
