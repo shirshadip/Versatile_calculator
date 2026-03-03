@@ -71,9 +71,3 @@ Notes:
 This repository currently does not include a `LICENSE` file. If you plan to publish or distribute the project, add an appropriate license (for example, MIT) to the repository root.
 
 ---
-
-If you'd like, I can also:
-
-- Add a short `CONTRIBUTING` summary into this `README`.
-- Create a minimal `LICENSE` file (MIT) and commit it.
-- Add a short `run` script to `ReactAPP/Versatile_Calculator` to simplify dev start-up.
