@@ -1,17 +1,23 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { gravitationalforce, convertgravitationalforce } from "./javascript/force";
+// import { gravitationalforce, convertgravitationalforce } from "./javascript/force";
+import Scientific from "../scientific";
+import ElectricForce from "./force/Electricforce";
+import Fgmmr2 from "./force/fgmmr2";
 import Fma from "./force/fma";
-import Fgmmr2 from "./force/fgmmr2"
 
 
 
 
 function ForceCalculator() {
-  // const navigate = useNavigate();
-  const [fma,setButton1]=useState(false);
-  const [fgmmr2,setButton2]=useState(false);
-  
+  const navigate = useNavigate();
+  const [fma, setButton1] = useState(false);
+  const [fgmmr2, setButton2] = useState(false);
+  const [Eforce, setButton3] = useState(false);
+
+
+  // scientific calculator 
+  const [sciencalc, Setcalc] = useState(false);
 
 
   return (
@@ -21,7 +27,7 @@ function ForceCalculator() {
       <div className="nav">
         <ul>
           <li>
-            <a href="#fma" onClick={()=>setButton1(true)}>
+            <a href="#fma" onClick={() => setButton1(true)}>
               <span>
                 <span className="icon"></span>
                 <p>
@@ -33,7 +39,7 @@ function ForceCalculator() {
           </li>
 
           <li>
-            <a href="#fgmmr" onClick={()=>setButton2(true)}>
+            <a href="#fgmmr" onClick={() => setButton2(true)}>
               <span>
                 <span className="icon"></span>
                 <p>F = Gm<sub>1</sub>m<sub>2</sub>/r<sup>2</sup> From Gravitation</p>
@@ -42,10 +48,12 @@ function ForceCalculator() {
           </li>
 
           <li>
-            <a href="#">
+            <a href="#ElectricForce" onClick={() => setButton3(true)}>
               <span>
                 <span className="icon"></span>
-                F = G(m₁m₂/r²) from universal Gravitational Law
+                <p>
+                  F = (1 / (4πε<sub>0</sub>)) × (q<sub>1</sub> q<sub>2</sub> / r<sup>2</sup>)
+                </p>
               </span>
             </a>
           </li>
@@ -55,22 +63,37 @@ function ForceCalculator() {
 
 
       {fma &&
-      <Fma />
+        <Fma />
       }
       {fgmmr2 &&
-      <Fgmmr2 />
+        <Fgmmr2 />
+      }
+      {Eforce &&
+        <ElectricForce />
+      }
+      {
+        sciencalc &&
+        <Scientific />
       }
       {/* <button onClick={() => setButton1(false)}>Hide The Component F=ma</button> */}
-      
-        
-        
 
-      
+
+
+
+
 
       <div id="homenav">
         <button onClick={() => navigate("/")}>← Home Page</button>
       </div>
+      {sciencalc ? (
+        <button onClick={() => Setcalc(false)}>Hide Calculator</button>
+      ) : (
+        <button onClick={() => Setcalc(true)}>Want to use a scientific calculator??</button>
+      )}
+
+
     </div>
+
   );
 }
 

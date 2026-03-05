@@ -6,7 +6,7 @@ import { gravitationalforce, convertgravitationalforce } from "../javascript/for
 
 
 
-function ForceCalculator() {
+function Fma() {
     const navigate = useNavigate();
     
 
@@ -101,4 +101,4 @@ function ForceCalculator() {
     );
 }
 
-export default ForceCalculator;
+export default Fma;

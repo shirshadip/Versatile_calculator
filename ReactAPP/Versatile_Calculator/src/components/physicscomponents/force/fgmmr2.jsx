@@ -5,7 +5,7 @@ import { gravitationalforce ,convertgravitationalforce } from "../javascript/for
 
 
 
-function ForceCalculator() {
+function Fgmmr2() {
   const navigate = useNavigate();
 
  
@@ -30,7 +30,7 @@ function showgravforceincgs(){
   return (
     <div>
       
-      <div className="head">
+      <div className="head" id="fgmmr">
           <h2>F = G.(m<sub>1</sub>m<sub>2</sub>)/r<sup>2</sup> 
           <br />
           Where G= 6.67430x10<sup>11</sup>m<sup>3</sup>kg<sup>-1</sup>s<sup>-2</sup></h2>
@@ -79,4 +79,4 @@ function showgravforceincgs(){
   );
 }
 
-export default ForceCalculator;
+export default Fgmmr2;
