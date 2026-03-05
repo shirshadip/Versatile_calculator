@@ -11,6 +11,7 @@ import Feedback from "./components/feedback"
 import Footer from "./components/footer"
 import Physics from "./components/Physicsnav"
 import Force from "./components/physicscomponents/Force"
+// import Fma from "./components/physicscomponents/force/fma"
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/sequenceseries' element={<Sequenceseries />} />
         <Route path='/feedback' element={<Feedback/>} />
         <Route path="/physics/force" element={<Force/>}/>
+        {/* <Route path="/physics/force/fma">{<Fma/>}</Route> */}
       </Routes>
     </BrowserRouter>
     <Footer/>
