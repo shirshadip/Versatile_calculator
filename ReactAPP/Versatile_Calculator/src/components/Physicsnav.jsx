@@ -23,10 +23,10 @@ export default function App() {
             </a>
           </li>
           <li>
-            <a href="#">
+            <a onClick={()=>navigate("/physics/work-done")} href="#">
               <span style={{ display: "flex", alignItems: "center" }}>
                 <span className="icon"></span>
-                Calculate
+                Calculate Work Done 
               </span>
             </a>
           </li>
