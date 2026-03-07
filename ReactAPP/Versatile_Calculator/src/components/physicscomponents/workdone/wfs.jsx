@@ -12,17 +12,15 @@ function Wfs() {
     const [result, setResult]=useState(null);
     const [converted,convertedResult]=useState(null);
     function calculateFS(){
-        const FS=Wfs(F,S);
-        setResult(FS);
-
-
-    }
+    const FS = wfs(F,S);
+    setResult(FS);
+}
     function calculateincgs(){
         const FS=convert_FS_in_CGS(F,S);
-         convertedResult(FS);
+         convertedResult(FS + "erg");
     }function calculateinsi() {
         const FS=convert_FS_in_SI(F,S);
-        convertedResult(FS);
+        convertedResult(FS + "J");
     }
 
 
@@ -74,8 +72,8 @@ function Wfs() {
                 }
 
                 <div className="output">
-                    {convertedResult && (
-                        <p>{convertedResult}</p>
+                    {converted && (
+                        <p>{converted}</p>
                     )}
                 </div>
 

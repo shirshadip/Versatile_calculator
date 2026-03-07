@@ -55,8 +55,8 @@ function Workdone() {
 
       {showwfs && <Wfs />}
       {/* {showFgmmr2 && <Fgmmr2 />}
-      {showElectricForce && <ElectricForce />}
-      {showScientific && <Scientific />} */}
+      {showElectricForce && <ElectricForce />} */}
+      {showScientific && <Scientific />}
 
       <div id="homenav">
         <button onClick={() => navigate("/")}>
