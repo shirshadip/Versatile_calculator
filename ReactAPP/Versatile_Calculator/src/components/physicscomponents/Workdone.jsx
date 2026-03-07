@@ -2,17 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Scientific from "../scientific";
-import ElectricForce from "./force/Electricforce";
-import Fgmmr2 from "./force/fgmmr2";
-import Fma from "./force/fma";
+import Wfs from "./workdone/wfs";
 
 function Workdone() {
 
   const navigate = useNavigate();
 
-  const [showFma, setShowFma] = useState(false);
-  const [showFgmmr2, setShowFgmmr2] = useState(false);
-  const [showElectricForce, setShowElectricForce] = useState(false);
+  const [showwfs, setShowwfs] = useState(false);
+  // const [showFgmmr2, setShowFgmmr2] = useState(false);
+  // const [showElectricForce, setShowElectricForce] = useState(false);
   const [showScientific, setShowScientific] = useState(false);
 
   return (
@@ -26,7 +24,7 @@ function Workdone() {
         <ul>
 
           <li>
-            <a href="#fma" onClick={() => setShowFma(true)}>
+            <a href="#fma" onClick={() => setShowwfs(true)}>
               <span>
                 <span className="icon"></span>
                 <p>W = F.S</p>
@@ -55,10 +53,10 @@ function Workdone() {
         </ul>
       </div>
 
-      {showFma && <Fma />}
-      {showFgmmr2 && <Fgmmr2 />}
+      {showwfs && <Wfs />}
+      {/* {showFgmmr2 && <Fgmmr2 />}
       {showElectricForce && <ElectricForce />}
-      {showScientific && <Scientific />}
+      {showScientific && <Scientific />} */}
 
       <div id="homenav">
         <button onClick={() => navigate("/")}>

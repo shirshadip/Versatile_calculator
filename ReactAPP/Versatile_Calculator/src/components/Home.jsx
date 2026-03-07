@@ -6,6 +6,7 @@ function Home() {
 
     return (
         <>
+        
             <div id="header">
                 <header>
                     <h1>Versatile Calculator</h1>

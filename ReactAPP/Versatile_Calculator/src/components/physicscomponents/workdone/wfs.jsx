@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { wfs,convert_FS_in_CGS,convert_FS_in_SI } from "../javascript/workdone";
 import { useNavigate } from "react-router-dom";
 
 function Wfs() {
@@ -6,49 +7,30 @@ function Wfs() {
     const navigate = useNavigate();
 
     // Input states
-    const [input1, setInput1] = useState("");
-    const [input2, setInput2] = useState("");
+    const [F, setF] = useState("");
+    const [S, setS] = useState("");
+    const [result, setResult]=useState(null);
+    const [converted,convertedResult]=useState(null);
+    function calculateFS(){
+        const FS=Wfs(F,S);
+        setResult(FS);
 
-    // Output states
-    const [result, setResult] = useState(null);
-    const [convertedResult, setConvertedResult] = useState("");
 
-    // Main calculation
-    const calculate = () => {
-        const a = Number(input1);
-        const b = Number(input2);
+    }
+    function calculateincgs(){
+        const FS=convert_FS_in_CGS(F,S);
+         convertedResult(FS);
+    }function calculateinsi() {
+        const FS=convert_FS_in_SI(F,S);
+        convertedResult(FS);
+    }
 
-        if (isNaN(a) || isNaN(b)) {
-            setResult("Enter valid numbers");
-            return;
-        }
-
-        const value = a * b; // Replace with required formula
-        setResult(value);
-        setConvertedResult("");
-    };
-
-    // Conversion 1
-    const convertOne = () => {
-        if (typeof result === "number") {
-            const converted = result / 100000; // Replace logic
-            setConvertedResult(converted);
-        }
-    };
-
-    // Conversion 2
-    const convertTwo = () => {
-        if (typeof result === "number") {
-            const converted = result * 100000; // Replace logic
-            setConvertedResult(converted);
-        }
-    };
 
     return (
         <div>
 
             <div className="head">
-                Calculator
+                W = F.s
             </div>
 
             <div className="input">
@@ -56,18 +38,20 @@ function Wfs() {
                 <input
                     type="number"
                     className="number"
-                    value={input1}
-                    onChange={(e) => setInput1(e.target.value)}
+                    value={F}
+                    onChange={(e) => setF(e.target.value)}
+                    placeholder="enter the value of Force(F)"
                 />
 
                 <input
                     type="number"
                     className="number"
-                    value={input2}
-                    onChange={(e) => setInput2(e.target.value)}
+                    value={S}
+                    onChange={(e) => setS(e.target.value)}
+                    placeholder="enter the value of displacement(s)"
                 />
 
-                <button onClick={calculate}>
+                <button onClick={calculateFS}>
                     Show result
                 </button>
 
@@ -79,12 +63,12 @@ function Wfs() {
 
                 {result !== null &&
                     <div>
-                        <button onClick={convertOne}>
-                            Convert 1
+                        <button onClick={calculateinsi}>
+                            Convert in SI
                         </button>
 
-                        <button onClick={convertTwo}>
-                            Convert 2
+                        <button onClick={calculateincgs}>
+                            Convert in CGS
                         </button>
                     </div>
                 }
