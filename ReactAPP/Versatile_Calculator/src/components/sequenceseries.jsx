@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { useRef,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/s&s.css";
 import '../App.css'
+import Scientific from "./scientific";
 // ── Math helpers ──────────────────────────────────────────────────────────────
 
 function tn_ap(a, n, d) {
@@ -31,6 +32,10 @@ function validate(a, n, d, output) {
 
 function SequenceSeries() {
     const navigate = useNavigate();
+
+    //scientific 
+    const [sciencalc, Setcalc] = useState(false);
+
 
     // shared inputs for AP
     const aRef = useRef(null);
@@ -101,12 +106,21 @@ function SequenceSeries() {
                 <button onClick={showSn}>Show the sum</button>
                 <div className="output" ref={snOutputRef}></div>
             </div>
+            {
+                sciencalc &&
+                <Scientific />
+            }
+            {sciencalc ? (
+                <button onClick={() => Setcalc(false)}>Hide Calculator</button>
+            ) : (
+                <button onClick={() => Setcalc(true)}>Want to use a scientific calculator??</button>
+            )}
 
             <div id="homenav">
                 <button onClick={() => navigate("/")}>← Home Page</button>
             </div>
 
-            
+
         </>
     );
 }

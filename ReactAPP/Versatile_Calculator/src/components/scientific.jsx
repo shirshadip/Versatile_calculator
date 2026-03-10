@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "../styles/scientific.css";
 import { useNavigate } from "react-router-dom";
 import '../App.css'
+import { handleCalculatorKey } from "../javascript/scientific_keyboard_nav";
 function Scientific() {
     const navigate = useNavigate();
     const [display, setDisplay] = useState("");
@@ -67,6 +68,24 @@ function Scientific() {
         for (let i = 2; i <= n; i++) result *= i;
         return result;
     };
+    useEffect(() => {
+        const keyHandler = (e) => {
+            handleCalculatorKey(
+                e,
+                appendValue,
+                clearDisplay,
+                deleteLast,
+                calculate
+            );
+        };
+
+        window.addEventListener("keydown", keyHandler);
+
+        return () => {
+            window.removeEventListener("keydown", keyHandler);
+        };
+    }, []);
+
 
     return (
         <>
@@ -78,7 +97,7 @@ function Scientific() {
                     placeholder="0"
                     autoComplete="off"
                     readOnly
-                    onChange={() => {}}
+                    onChange={() => { }}
                 />
 
                 <div className="button-grid">
