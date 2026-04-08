@@ -6,7 +6,7 @@ function Home() {
 
     return (
         <>
-        
+
             <div id="header">
                 <header>
                     <h1>Versatile Calculator</h1>
@@ -18,7 +18,7 @@ function Home() {
                 <ul>
                     <li>
                         <a onClick={() => navigate("/basic")}>
-                            <span style={{ display: 'flex', alignItems: 'center' ,cursor:'pointer'}}>
+                            <span style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
                                 <span className="icon"></span>
                                 Basic Calculator
                             </span>
@@ -26,7 +26,7 @@ function Home() {
                     </li>
                     <li>
                         <a onClick={() => navigate("/scientific")}>
-                            <span style={{ display: 'flex', alignItems: 'center',cursor:'pointer' }}>
+                            <span style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
                                 <span className="icon"></span>
                                 Scientific Calculator
                             </span>
@@ -34,7 +34,7 @@ function Home() {
                     </li>
                     <li>
                         <a onClick={() => navigate("/physics")}>
-                            <span style={{cursor:'pointer'}}>
+                            <span style={{ cursor: 'pointer' }}>
                                 <span className="icon"></span>
 
                                 Physics
@@ -43,7 +43,7 @@ function Home() {
                     </li>
                     <li>
                         <a onClick={() => navigate("/unit")}>
-                            <span style={{cursor:'pointer'}}> 
+                            <span style={{ cursor: 'pointer' }}>
                                 <span className="icon"></span>
 
                                 Unit converter
@@ -51,8 +51,8 @@ function Home() {
                         </a>
                     </li>
                     <li>
-                        <a onClick={()=>navigate("/permutationscombinations")}>
-                            <span style={{cursor:'pointer'}}>
+                        <a onClick={() => navigate("/permutationscombinations")}>
+                            <span style={{ cursor: 'pointer' }}>
                                 <span className="icon"></span>
                                 Permutations and combinations
 
@@ -60,16 +60,16 @@ function Home() {
                         </a>
                     </li>
                     <li>
-                        <a onClick={()=>navigate("/sequenceseries")}>
-                            <span style={{cursor:'pointer'}}>
+                        <a onClick={() => navigate("/sequenceseries")}>
+                            <span style={{ cursor: 'pointer' }}>
                                 <span className="icon"></span>
                                 Sequence and Series
                             </span>
                         </a>
                     </li>
                     <li>
-                        <a onClick={()=>navigate("/feedback")}>
-                            <span style={{cursor:'pointer'}}>
+                        <a onClick={() => navigate("/feedback")}>
+                            <span style={{ cursor: 'pointer' }}>
                                 <span className="icon"></span>
                                 Give a feedback to improve the website
                             </span>
@@ -89,7 +89,7 @@ function Home() {
 
             </div>
 
-           
+
         </>
     )
 }
