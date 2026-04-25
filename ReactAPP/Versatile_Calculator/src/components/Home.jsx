@@ -68,6 +68,14 @@ function Home() {
                         </a>
                     </li>
                     <li>
+                        <a onClick={() => navigate("/Vectorproduct")}>
+                            <span style={{ cursor: 'pointer' }}>
+                                <span className="icon"></span>
+                                Vector Product
+                            </span>
+                        </a>
+                    </li>
+                    <li>
                         <a onClick={() => navigate("/feedback")}>
                             <span style={{ cursor: 'pointer' }}>
                                 <span className="icon"></span>

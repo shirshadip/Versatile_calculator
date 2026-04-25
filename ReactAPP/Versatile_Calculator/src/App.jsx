@@ -14,6 +14,8 @@ import Force from "./components/physicscomponents/Force"
 // import Fma from "./components/physicscomponents/force/fma"
 import Workdone from "./components/physicscomponents/Workdone"
 import UnitConverter from "./components/Unit"
+import Vector from "./components/Vector"
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
         <Route path='/feedback' element={<Feedback/>} />
         <Route path="/physics/force" element={<Force/>}/>
         <Route path="/physics/work-done" element={<Workdone/>}></Route>
+        <Route path="/Vectorproduct" element={<Vector/>}></Route>
         
         {/* <Route path="/physics/force/fma">{<Fma/>}</Route> */}
       </Routes>
