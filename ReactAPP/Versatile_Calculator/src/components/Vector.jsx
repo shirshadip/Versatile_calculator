@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Scientific from "./scientific";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Vector() {
     const [sciencalc, Setcalc] = useState(false);
+    const navigate = useNavigate();
 
     const [a, setA] = useState("");
     const [b, setB] = useState("");
@@ -18,12 +20,15 @@ export default function Vector() {
     const [bkdot, setBKdot] = useState("");
 
 
-    function component_dot_product(ai, bi , aj, bj , ak, bk) {
+    function component_dot_product(ai, bi, aj, bj, ak, bk) {
         return ai * bi + aj * bj + ak * bk;
     }
 
     function dot_product(a, b, theta) {
         return a * b * Math.cos(theta);
+    }
+    function cross_product(a, b, theta) {
+        return a * b * Math.sin(theta);
     }
 
     const result =
@@ -36,110 +41,143 @@ export default function Vector() {
             <div className="head">
                 Calculate Dot Product
             </div>
-            
+
             <details>
                 <summary><p>
                     Formula: <strong>a·b = ab cos(θ)</strong>
                 </p></summary>
-                
-            
-            <div className="input">
 
-                <input
-                    type="number"
-                    className="number"
-                    placeholder="Enter a"
-                    value={a}
-                    onChange={(e) => setA(e.target.value)}
-                />
 
-                <input
-                    type="number"
-                    className="number"
-                    placeholder="Enter b"
-                    value={b}
-                    onChange={(e) => setB(e.target.value)}
-                />
+                <div className="input">
 
-                <input
-                    type="number"
-                    className="number"
-                    placeholder="Enter θ (radians)"
-                    value={theta}
-                    onChange={(e) => setTheta(e.target.value)}
-                />
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter a"
+                        value={a}
+                        onChange={(e) => setA(e.target.value)}
+                    />
 
-                <h3>
-                    Dot Product:{" "}
-                    {result !== "" ? result.toFixed(4) : "Enter values"}
-                </h3>
-            </div>
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter b"
+                        value={b}
+                        onChange={(e) => setB(e.target.value)}
+                    />
+
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter θ (radians)"
+                        value={theta}
+                        onChange={(e) => setTheta(e.target.value)}
+                    />
+
+                    <h3>
+                        Dot Product:{" "}
+                        {result !== "" ? result.toFixed(4) : "Enter values"}
+                    </h3>
+                </div>
             </details>
             <details>
                 <summary><p>
                     Formula: <strong>a.b</strong>
                 </p></summary>
-            <div className="input">
-               
-                    <input
-                    type="number"
-                    className="number"
-                    placeholder="Enter a i component"
-                    value={aidot}
-                    onChange={(e) => setAIdot(e.target.value)}
+                <div className="input">
 
-                />
                     <input
-                    type="number"
-                    className="number"
-                    placeholder="Enter b i component"
-                    value={bidot}
-                    onChange={(e) => setBIdot(e.target.value)}
+                        type="number"
+                        className="number"
+                        placeholder="Enter a i component"
+                        value={aidot}
+                        onChange={(e) => setAIdot(e.target.value)}
 
-                />
+                    />
                     <input
-                    type="number"
-                    className="number"
-                    placeholder="Enter a j component"
-                    value={ajdot}
-                    onChange={(e) => setAJdot(e.target.value)}
+                        type="number"
+                        className="number"
+                        placeholder="Enter b i component"
+                        value={bidot}
+                        onChange={(e) => setBIdot(e.target.value)}
 
-                />
+                    />
                     <input
-                    type="number"
-                    className="number"
-                    placeholder="Enter b j component"
-                    value={bjdod}
-                    onChange={(e) => setBJdot(e.target.value)}
+                        type="number"
+                        className="number"
+                        placeholder="Enter a j component"
+                        value={ajdot}
+                        onChange={(e) => setAJdot(e.target.value)}
 
-                />
+                    />
                     <input
-                    type="number"
-                    className="number"
-                    placeholder="Enter a k component"
-                    value={akdot}
-                    onChange={(e) => setAKdot(e.target.value)}
+                        type="number"
+                        className="number"
+                        placeholder="Enter b j component"
+                        value={bjdod}
+                        onChange={(e) => setBJdot(e.target.value)}
 
-                />
+                    />
                     <input
-                    type="number"
-                    className="number"
-                    placeholder="Enter b k component"
-                    value={bkdot}
-                    onChange={(e) => setBKdot(e.target.value)}
+                        type="number"
+                        className="number"
+                        placeholder="Enter a k component"
+                        value={akdot}
+                        onChange={(e) => setAKdot(e.target.value)}
 
-                />
-                <h3>
-                    Dot Product:{" "}
-                    {aidot && bidot && ajdot && bjdod && akdot && bkdot ? component_dot_product(parseFloat(aidot), parseFloat(bidot), parseFloat(ajdot), parseFloat(bjdod), parseFloat(akdot), parseFloat(bkdot)).toFixed(4) : "Enter values"}
-                </h3>
-            </div>
+                    />
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter b k component"
+                        value={bkdot}
+                        onChange={(e) => setBKdot(e.target.value)}
+
+                    />
+                    <h3>
+                        Dot Product:{" "}
+                        {aidot && bidot && ajdot && bjdod && akdot && bkdot ? component_dot_product(parseFloat(aidot), parseFloat(bidot), parseFloat(ajdot), parseFloat(bjdod), parseFloat(akdot), parseFloat(bkdot)).toFixed(4) : "Enter values"}
+                    </h3>
+                </div>
             </details>
-            <div className="input">
-                <p>Formula: <strong>a × b = ab.sin(θ)</strong></p>
+            <details>
+                <summary><p>
+                    Formula: <strong>a × b = ab.sin(θ)</strong>
+                </p></summary>
 
-            </div>
+                <div className="input">
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter a"
+                        value={a}
+                        onChange={(e) => setA(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter b"
+                        value={b}
+                        onChange={(e) => setB(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter θ (radians)"
+                        value={theta}
+                        onChange={(e) => setTheta(e.target.value)}
+                    />
+                    <h3>
+                        Cross Product:{" "}
+                        {a && b && theta ? cross_product(parseFloat(a), parseFloat(b), parseFloat(theta)).toFixed(4) : "Enter values"}
+                    </h3>
+                </div>
+            </details>
+            <details>
+                <summary>
 
+                </summary>
+            </details>
             {sciencalc && <Scientific />}
 
             {sciencalc ? (
@@ -151,6 +189,10 @@ export default function Vector() {
                     Want to use a scientific calculator?
                 </button>
             )}
+            <div id="homenav">
+                <button onClick={() => navigate("/")}>← Home Page</button>
+            </div>
+
         </>
     );
 }
