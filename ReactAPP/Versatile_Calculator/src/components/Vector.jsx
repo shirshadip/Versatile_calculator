@@ -173,11 +173,11 @@ export default function Vector() {
                     </h3>
                 </div>
             </details>
-            <details>
+            {/* <details>
                 <summary>
 
                 </summary>
-            </details>
+            </details> */}
             {sciencalc && <Scientific />}
 
             {sciencalc ? (
