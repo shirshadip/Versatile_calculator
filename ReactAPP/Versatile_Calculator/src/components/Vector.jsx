@@ -30,7 +30,17 @@ export default function Vector() {
     function cross_product(a, b, theta) {
         return a * b * Math.sin(theta);
     }
+    function component_cross_product(ai, bi, aj, bj, ak, bk) {
+    const i = aj * bk - ak * bj;
+    const j = ak * bi - ai * bk;
+    const k = ai * bj - aj * bi;
 
+    return `${i.toFixed(4)}î  ${
+        j >= 0 ? "+" : "-"
+    } ${Math.abs(j).toFixed(4)}ĵ ${
+        k >= 0 ? "+" : "-"
+    } ${Math.abs(k).toFixed(4)}k̂`;
+}
     const result =
         a && b && theta
             ? dot_product(parseFloat(a), parseFloat(b), parseFloat(theta))
@@ -173,11 +183,63 @@ export default function Vector() {
                     </h3>
                 </div>
             </details>
-            {/* <details>
+            <details>
                 <summary>
-
+                    <p>Formula: <strong>a X b </strong>
+                    </p>
                 </summary>
-            </details> */}
+                <div className="input">
+
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter a i component"
+                        value={aidot}
+                        onChange={(e) => setAIdot(e.target.value)}
+                    />
+                    <input
+                        type="number"   
+                    className="number"
+                        placeholder="Enter b i component"
+                        value={bidot}
+                        onChange={(e) => setBIdot(e.target.value)}
+                    />
+                    <input
+
+                        type="number"
+                        className="number"
+                        placeholder="Enter a j component"
+                        value={ajdot}
+                        onChange={(e) => setAJdot(e.target.value)}
+                    />
+                    <input
+
+                        type="number"
+                        className="number"
+                        placeholder="Enter b j component"
+                        value={bjdod}
+                        onChange={(e) => setBJdot(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter a k component"
+                        value={akdot}
+                        onChange={(e) => setAKdot(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        className="number"
+                        placeholder="Enter b k component"
+                        value={bkdot}
+                        onChange={(e) => setBKdot(e.target.value)}
+                    />
+                    <h3>
+                        Cross Product:{" "}
+                        {aidot && bidot && ajdot && bjdod && akdot && bkdot ? component_cross_product(parseFloat(aidot), parseFloat(bidot), parseFloat(ajdot), parseFloat(bjdod), parseFloat(akdot), parseFloat(bkdot)) : "Enter values"}
+                    </h3>
+                </div>
+            </details>
             {sciencalc && <Scientific />}
 
             {sciencalc ? (
