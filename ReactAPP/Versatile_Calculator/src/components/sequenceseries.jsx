@@ -41,7 +41,7 @@ function SequenceSeries() {
     const aRef = useRef(null);
     const nRef = useRef(null);
     const dRef = useRef(null);
-
+                                        
     // separate output refs
     const tnOutputRef = useRef(null);
     const snOutputRef = useRef(null);
