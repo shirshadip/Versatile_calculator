@@ -35,7 +35,7 @@ function PermComb() {
     const navigate = useNavigate();
 
     // refs for every input & output
-    const factInputRef  = useRef(null);
+    const factInputRef = useRef(null);
     const factDisplayRef = useRef(null);
 
     const nForPRef = useRef(null);
@@ -97,42 +97,57 @@ function PermComb() {
     return (
         <>
             {/* ── Factorial ── */}
-            <div className="head">Calculate Factorial</div>
-            <div className="input">
-                <p>Expression = n!</p>
-                <input
-                    ref={factInputRef}
-                    type="text"
-                    className="number"
-                    placeholder="Enter a number to evaluate the factorial"
-                />
-                <button onClick={showFact}>Show result</button>
-                <div className="output" ref={factDisplayRef}></div>
-            </div>
+            <details>
+                <summary>Factorial</summary>
+                <p>Formula: n! = n × (n - 1) × (n - 2) × ... × 1</p>
+                <div className="head">Calculate Factorial</div>
+                <div className="input">
+                    <p>Expression = n!</p>
+                    <input
+                        ref={factInputRef}
+                        type="text"
+                        className="number"
+                        placeholder="Enter a number to evaluate the factorial"
+                    />
+                    <button onClick={showFact}>Show result</button>
+                    <div className="output" ref={factDisplayRef}></div>
+                </div>
+            </details>
+
 
             {/* ── Permutations ── */}
-            <div className="head">Calculate Permutations</div>
-            <div className="input">
-                <p>Expression = <sup>n</sup>p<sub>r</sub></p>
-                <input ref={nForPRef} type="text" className="number" placeholder="Enter the n" />
-                <input ref={rForPRef} type="text" className="number" placeholder="Enter the r" />
-                <button onClick={showPermutations}>Show result</button>
-                <div className="output" ref={displayPRef}></div>
-            </div>
+            <details>
+                <summary>Permutations</summary>
+                <p>Formula: <sup>n</sup>P<sub>r</sub> = n! / (n - r)!</p>
+                <div className="head">Calculate Permutations</div>
+                <div className="input">
+                    <p>Expression = <sup>n</sup>p<sub>r</sub></p>
+                    <input ref={nForPRef} type="text" className="number" placeholder="Enter the n" />
+                    <input ref={rForPRef} type="text" className="number" placeholder="Enter the r" />
+                    <button onClick={showPermutations}>Show result</button>
+                    <div className="output" ref={displayPRef}></div>
+                </div>
+            </details>
+
 
             {/* ── Combinations ── */}
-            <div className="head">Calculate Combinations</div>
-            <div className="input">
-                <p>Expression = <sup>n</sup>c<sub>r</sub></p>
-                <input ref={nForCRef} type="text" className="number" placeholder="Enter the n" />
-                <input ref={rForCRef} type="text" className="number" placeholder="Enter the r" />
-                <button onClick={showCombinations}>Show result</button>
-                <div className="output" ref={displayCRef}></div>
-            </div>
+            <details>
+                <summary>Combinations</summary>
+                <p>Formula: <sup>n</sup>C<sub>r</sub> = n! / (r! × (n - r)!)</p>
+                <div className="head">Calculate Combinations</div>
+                <div className="input">
+                    <p>Expression = <sup>n</sup>c<sub>r</sub></p>
+                    <input ref={nForCRef} type="text" className="number" placeholder="Enter the n" />
+                    <input ref={rForCRef} type="text" className="number" placeholder="Enter the r" />
+                    <button onClick={showCombinations}>Show result</button>
+                    <div className="output" ref={displayCRef}></div>
+                </div>
 
-            <div id="homenav">
-                <button onClick={() => navigate("/")}>← Home Page</button>
-            </div>
+                <div id="homenav">
+                    <button onClick={() => navigate("/")}>← Home Page</button>
+                </div>
+            </details>
+
 
         </>
     );

@@ -42,10 +42,25 @@ function Home() {
                         </a>
                     </li>
                     <li>
+                        <a href="https://calculusevaluator.streamlit.app/" target="_blank" rel="noreferrer">
+                            <span style={{ cursor: 'pointer' }}>
+                                <span className="icon"></span>
+                                Calculus 
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a onClick={() => navigate("/Vectorproduct")}>
+                            <span style={{ cursor: 'pointer' }}>
+                                <span className="icon"></span>
+                                Vector Product
+                            </span>
+                        </a>
+                    </li>
+                    <li>
                         <a onClick={() => navigate("/unit")}>
                             <span style={{ cursor: 'pointer' }}>
                                 <span className="icon"></span>
-
                                 Unit converter
                             </span>
                         </a>
@@ -64,14 +79,6 @@ function Home() {
                             <span style={{ cursor: 'pointer' }}>
                                 <span className="icon"></span>
                                 Sequence and Series
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a onClick={() => navigate("/Vectorproduct")}>
-                            <span style={{ cursor: 'pointer' }}>
-                                <span className="icon"></span>
-                                Vector Product
                             </span>
                         </a>
                     </li>

@@ -1,128 +1,187 @@
-import { useRef,useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/s&s.css";
 import '../App.css'
-import Scientific from "./scientific";
-// ── Math helpers ──────────────────────────────────────────────────────────────
 
-function tn_ap(a, n, d) {
-    return a + (n - 1) * d;
-}
+export default function SequenceSeries() {
+    const [a, setA] = useState("");
+    const [n, setN] = useState("");
+    const [d, setD] = useState("");
+    const [r, setR] = useState("");
 
-function sn_ap(a, n, d) {
-    // Sn = n/2 × (2a + (n−1)d)  ← fixed from original copy-paste bug
-    return (n / 2) * (2 * a + (n - 1) * d);
-}
-
-// ── Shared validator ─────────────────────────────────────────────────────────
-
-function validate(a, n, d, output) {
-    if (Number.isNaN(a) || Number.isNaN(n) || Number.isNaN(d)) {
-        output.innerHTML = "❌ Please enter valid numeric values.";
-        return false;
-    }
-    if (!Number.isInteger(n) || n < 1) {
-        output.innerHTML = "❌ n must be a positive integer (n ≥ 1).";
-        return false;
-    }
-    return true;
-}
-
-// ── Component ─────────────────────────────────────────────────────────────────
-
-function SequenceSeries() {
+    const [result, setResult] = useState("");
     const navigate = useNavigate();
 
-    //scientific 
-    const [sciencalc, Setcalc] = useState(false);
+    // AP Functions
+    function tn_ap(a, n, d) {
+        return a + (n - 1) * d;
+    }
 
+    function sn_ap(a, n, d) {
+        return (n / 2) * (2 * a + (n - 1) * d);
+    }
 
-    // shared inputs for AP
-    const aRef = useRef(null);
-    const nRef = useRef(null);
-    const dRef = useRef(null);
-                                        
-    // separate output refs
-    const tnOutputRef = useRef(null);
-    const snOutputRef = useRef(null);
+    // GP Functions
+    function tn_gp(a, n, r) {
+        return a * Math.pow(r, n - 1);
+    }
 
-    // ── Handlers ────────────────────────────────────────────────────────────
+    function sn_gp(a, n, r) {
+        if (r === 1) return a * n;
 
-    const showTn = () => {
-        const a = Number(aRef.current.value);
-        const n = Number(nRef.current.value);
-        const d = Number(dRef.current.value);
-        const output = tnOutputRef.current;
+        return (a * (Math.pow(r, n) - 1)) / (r - 1);
+    }
 
-        if (!validate(a, n, d, output)) return;
+    function infinite_gp(a, r) {
+        if (Math.abs(r) >= 1) {
+            return "Infinite sum does not exist";
+        }
 
-        const result = tn_ap(a, n, d);
-        output.innerHTML = `
-            <p>
-                t<sub>${n}</sub> = ${a} + (${n} − 1) × ${d}<br/>
-                <strong>= ${result}</strong>
-            </p>
-        `;
-    };
-
-    const showSn = () => {
-        const a = Number(aRef.current.value);
-        const n = Number(nRef.current.value);
-        const d = Number(dRef.current.value);
-        const output = snOutputRef.current;
-
-        if (!validate(a, n, d, output)) return;
-
-        const result = sn_ap(a, n, d);
-        output.innerHTML = `
-            <p>
-                S<sub>${n}</sub> = ${n}/2 × (2 × ${a} + (${n} − 1) × ${d})<br/>
-                <strong>= ${result}</strong>
-            </p>
-        `;
-    };
-
-    // ── JSX ─────────────────────────────────────────────────────────────────
+        return (a / (1 - r)).toFixed(4);
+    }
 
     return (
-        <>
-            <div className="head">Arithmetic Progressions</div>
+        <div className="input">
+            <h1>Sequence & Series Calculator</h1>
 
-            <div className="input">
-                <p>Formula (term): <strong>t<sub>n</sub> = a + (n−1)d</strong></p>
-                <p>Formula (sum): <strong>S<sub>n</sub> = n/2 × (2a + (n−1)d)</strong></p>
+            <details>
+                <summary>Arithmetic Progression (AP)</summary>
 
-                <input ref={aRef} type="text" className="number" placeholder="Enter a" />
-                <input ref={nRef} type="text" className="number" placeholder="Enter n" />
-                <input ref={dRef} type="text" className="number" placeholder="Enter d" />
+                <p>
+                    Formula:
+                    <strong> tₙ = a + (n - 1)d</strong>
+                </p>
 
-                {/* ── n-th Term ── */}
-                <h2>Evaluate n-th Term</h2>
-                <button onClick={showTn}>Show the term</button>
-                <div className="output" ref={tnOutputRef}></div>
+                <p>
+                    Formula:
+                    <strong> Sₙ = n/2 × (2a + (n - 1)d)</strong>
+                </p>
 
-                {/* ── Sum ── */}
-                <h2>Evaluate Sum of n Terms</h2>
-                <button onClick={showSn}>Show the sum</button>
-                <div className="output" ref={snOutputRef}></div>
-            </div>
-            {
-                sciencalc &&
-                <Scientific />
-            }
-            {sciencalc ? (
-                <button onClick={() => Setcalc(false)}>Hide Calculator</button>
-            ) : (
-                <button onClick={() => Setcalc(true)}>Want to use a scientific calculator??</button>
-            )}
+                <input
+                    type="number"
+                    className="number"
+                    placeholder="Enter a"
+                    value={a}
+                    onChange={(e) => setA(e.target.value)}
+                />
 
+                <input
+                    type="number"
+                    className="number"
+                    placeholder="Enter n"
+                    value={n}
+                    onChange={(e) => setN(e.target.value)}
+                />
+
+                <input
+                    type="number"
+                    className="number"
+                    placeholder="Enter d"
+                    value={d}
+                    onChange={(e) => setD(e.target.value)}
+                />
+
+                <h3>
+                    n-th Term:{" "}
+                    {a && n && d
+                        ? tn_ap(
+                            parseFloat(a),
+                            parseFloat(n),
+                            parseFloat(d)
+                        ).toFixed(4)
+                        : "Enter values"}
+                </h3>
+
+                <h3>
+                    Sum of n Terms:{" "}
+                    {a && n && d
+                        ? sn_ap(
+                            parseFloat(a),
+                            parseFloat(n),
+                            parseFloat(d)
+                        ).toFixed(4)
+                        : "Enter values"}
+                </h3>
+            </details>
+
+            <details>
+                <summary>Geometric Progression (GP)</summary>
+
+                <p>
+                    Formula:
+                    <strong> tₙ = arⁿ⁻¹</strong>
+                </p>
+
+                <p>
+                    Formula:
+                    <strong> Sₙ = a(rⁿ − 1)/(r − 1)</strong>
+                </p>
+
+                <p>
+                    Formula:
+                    <strong> S∞ = a/(1-r)</strong>
+                </p>
+
+                <input
+                    type="number"
+                    className="number"
+                    placeholder="Enter a"
+                    value={a}
+                    onChange={(e) => setA(e.target.value)}
+                />
+
+                <input
+                    type="number"
+                    className="number"
+                    placeholder="Enter n"
+                    value={n}
+                    onChange={(e) => setN(e.target.value)}
+                />
+
+                <input
+                    type="number"
+                    className="number"
+                    placeholder="Enter r"
+                    value={r}
+                    onChange={(e) => setR(e.target.value)}
+                />
+
+                <h3>
+                    n-th Term:{" "}
+                    {a && n && r
+                        ? tn_gp(
+                            parseFloat(a),
+                            parseFloat(n),
+                            parseFloat(r)
+                        ).toFixed(4)
+                        : "Enter values"}
+                </h3>
+
+                <h3>
+                    Sum of n Terms:{" "}
+                    {a && n && r
+                        ? sn_gp(
+                            parseFloat(a),
+                            parseFloat(n),
+                            parseFloat(r)
+                        ).toFixed(4)
+                        : "Enter values"}
+                </h3>
+
+                <h3>
+                    Infinite GP Sum:{" "}
+                    {a && r
+                        ? infinite_gp(
+                            parseFloat(a),
+                            parseFloat(r)
+                        )
+                        : "Enter values"}
+                </h3>
+            </details>
+
+            <h2>{result}</h2>
             <div id="homenav">
                 <button onClick={() => navigate("/")}>← Home Page</button>
             </div>
-
-
-        </>
+        </div>
     );
 }
-
-export default SequenceSeries;

@@ -18,7 +18,29 @@ export default function Vector() {
     const [bjdod, setBJdot] = useState("");
     const [akdot, setAKdot] = useState("");
     const [bkdot, setBKdot] = useState("");
+    const [ai, setAI] = useState("");
+    const [bi, setBI] = useState("");
+    const [aj, setAJ] = useState("");
+    const [bj, setBJ] = useState("");
+    const [ak, setAK] = useState("");
+    const [bk, setBK] = useState("");
 
+    function component_addition(ai, bi, aj, bj, ak, bk) {
+        const i = ai + bi;
+        const j = aj + bj;
+        const k = ak + bk;
+        return `${i.toFixed(4)}î  ${j >= 0 ? "+" : "-"
+            } ${Math.abs(j).toFixed(4)}ĵ ${k >= 0 ? "+" : "-"
+            } ${Math.abs(k).toFixed(4)}k̂`;
+    }
+    function component_subtraction(ai, bi, aj, bj, ak, bk) {
+        const i = ai - bi;
+        const j = aj - bj;
+        const k = ak - bk;
+        return `${i.toFixed(4)}î  ${j >= 0 ? "+" : "-"
+            } ${Math.abs(j).toFixed(4)}ĵ ${k >= 0 ? "+" : "-"
+            } ${Math.abs(k).toFixed(4)}k̂`;
+    }
 
     function component_dot_product(ai, bi, aj, bj, ak, bk) {
         return ai * bi + aj * bj + ak * bk;
@@ -31,16 +53,14 @@ export default function Vector() {
         return a * b * Math.sin(theta);
     }
     function component_cross_product(ai, bi, aj, bj, ak, bk) {
-    const i = aj * bk - ak * bj;
-    const j = ak * bi - ai * bk;
-    const k = ai * bj - aj * bi;
+        const i = aj * bk - ak * bj;
+        const j = ak * bi - ai * bk;
+        const k = ai * bj - aj * bi;
 
-    return `${i.toFixed(4)}î  ${
-        j >= 0 ? "+" : "-"
-    } ${Math.abs(j).toFixed(4)}ĵ ${
-        k >= 0 ? "+" : "-"
-    } ${Math.abs(k).toFixed(4)}k̂`;
-}
+        return `${i.toFixed(4)}î  ${j >= 0 ? "+" : "-"
+            } ${Math.abs(j).toFixed(4)}ĵ ${k >= 0 ? "+" : "-"
+            } ${Math.abs(k).toFixed(4)}k̂`;
+    }
     const result =
         a && b && theta
             ? dot_product(parseFloat(a), parseFloat(b), parseFloat(theta))
@@ -52,6 +72,105 @@ export default function Vector() {
                 Calculate Dot Product
             </div>
 
+
+            {/* vector addition */}
+            <details>
+                <summary>
+                    <p>Formula: <strong> a + b </strong>
+                    </p>
+                </summary>
+                <div className="input">
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter a i component"
+                        value={ai}
+                        onChange={(e) => setAI(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter b i component"
+                        value={bi}
+                        onChange={(e) => setBI(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter a j component"
+                        value={aj}
+                        onChange={(e) => setAJ(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter b j component"
+                        value={bj}
+                        onChange={(e) => setBJ(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter a k component"
+                        value={ak}
+                        onChange={(e) => setAK(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter b k component"
+                        value={bk}
+                        onChange={(e) => setBK(e.target.value)}
+                    />
+                    <h3>
+                        Vector Addition:{" "}
+                        {ai && bi && aj && bj && ak && bk ? component_addition(parseFloat(ai), parseFloat(bi), parseFloat(aj), parseFloat(bj), parseFloat(ak), parseFloat(bk)) : "Enter values"}
+                    </h3>
+                </div>
+            </details>
+            {/* vector subtraction */}
+            <details>
+                <summary>
+                    <p>Formula: <strong> a - b </strong></p>
+                </summary>
+                <div className="input">
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter a i component"
+                        value={ai}
+                        onChange={(e) => setAI(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter b i component"
+                        value={bi}
+                        onChange={(e) => setBI(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter a j component"
+                        value={aj}
+                        onChange={(e) => setAJ(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter b j component"
+                        value={bj}
+                        onChange={(e) => setBJ(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter a k component"
+                        value={ak}
+                        onChange={(e) => setAK(e.target.value)}
+                    />
+                    <input type="number"
+                        className="number"
+                        placeholder="Enter b k component"
+                        value={bk}
+                        onChange={(e) => setBK(e.target.value)}
+                    />
+                    <h3>
+                        Vector Subtraction:{" "}
+                        {ai && bi && aj && bj && ak && bk ? component_subtraction(parseFloat(ai), parseFloat(bi), parseFloat(aj), parseFloat(bj), parseFloat(ak), parseFloat(bk)) : "Enter values"}
+                    </h3>
+                </div>
+            </details>
+            {/* dot product */}
             <details>
                 <summary><p>
                     Formula: <strong>a·b = ab cos(θ)</strong>
@@ -90,6 +209,7 @@ export default function Vector() {
                     </h3>
                 </div>
             </details>
+            {/* dot product with component */}
             <details>
                 <summary><p>
                     Formula: <strong>a.b</strong>
@@ -150,6 +270,7 @@ export default function Vector() {
                     </h3>
                 </div>
             </details>
+            {/* cross product */}
             <details>
                 <summary><p>
                     Formula: <strong>a × b = ab.sin(θ)</strong>
@@ -183,6 +304,7 @@ export default function Vector() {
                     </h3>
                 </div>
             </details>
+            {/* cross product with component */}
             <details>
                 <summary>
                     <p>Formula: <strong>a X b </strong>
@@ -198,8 +320,8 @@ export default function Vector() {
                         onChange={(e) => setAIdot(e.target.value)}
                     />
                     <input
-                        type="number"   
-                    className="number"
+                        type="number"
+                        className="number"
                         placeholder="Enter b i component"
                         value={bidot}
                         onChange={(e) => setBIdot(e.target.value)}
@@ -240,6 +362,7 @@ export default function Vector() {
                     </h3>
                 </div>
             </details>
+            
             {sciencalc && <Scientific />}
 
             {sciencalc ? (
